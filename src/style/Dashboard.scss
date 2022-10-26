@@ -422,6 +422,19 @@ $font-color: #181945;
                         .wrap {
                             display: flex;
                             justify-content: space-between;
+
+                            form {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: baseline;
+                            }
+
+                            button {
+                                border: none;
+                                background-color: #00000000;
+                                float: right;
+                                transform: translateX(10px);
+                            }
                             i {
                                 color: #A0A4A8;
                                 font-size: 1.4rem;
@@ -437,6 +450,22 @@ $font-color: #181945;
                                 margin-top: -1rem;
                                 font-size: 1.8rem;
                                 color: $font-color;
+                            }
+                            input {
+                                font-weight: 600;
+                                font-family: 'Open Sans', sans-serif;
+                                margin-top: -1rem;
+                                font-size: 1.8rem;
+                                color: $font-color;
+                                border: none;
+                                padding: 0;
+                                border-bottom: 1px solid #ADADAD;
+                                background-color: #00000000;
+                                transform: translateY(-1px);
+                                margin-bottom: 1rem;
+                                &:focus {
+                                    outline: none !important;
+                                }
                             }
                         }
 

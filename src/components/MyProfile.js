@@ -13,8 +13,9 @@ const myProfileData = {
 }
 
 const MyProfile = () => {
-    const [inputValue, setInputValue] = useState(myProfileData.name)
-    const [isInput, setIsInput] = useState(false)
+  const [inputValue, setInputValue] = useState(myProfileData.name)
+  const [isInput, setIsInput] = useState(false)
+
   return (
     <div className="myprofile">
         <h1 className="h1">Meu Perfil</h1>
@@ -23,15 +24,36 @@ const MyProfile = () => {
                 <div className="circle">
                     <img src={myProfilePic} alt="profile" />
                 </div>
-                <h3 className="name">Megumi David</h3>
+                <h3 className="name">{myProfileData.name}</h3>
             </div>
             <div className="info">
                 <div className="data">
                     <p className="label">Nome</p>
                     <div className="wrap">
-                    
                         {
-                            isInput ? (<><input value={inputValue}/><i  onClick={() => setIsInput(false)}><FontAwesomeIcon icon={faFloppyDisk} /></i></>) : (<><p className="input">{inputValue}</p> <i onClick={() => setIsInput(true)}><FontAwesomeIcon icon={faPenToSquare} /></i></>)
+                            isInput ? (
+                                <form>
+                                    <input value={inputValue} 
+                                           onChange={(e) => setInputValue(e.target.value)}
+                                    />
+                                    <button type='submit'  
+                                        onClick={() => setIsInput(false)}>
+                                        <i>
+                                            <FontAwesomeIcon 
+                                                icon={faFloppyDisk} 
+                                                onClick={() => myProfileData.name = inputValue}/>
+                                        </i>
+                                    </button>
+                                </form>
+                                ) : 
+                                (
+                                <>
+                                    <p className="input">{inputValue}</p> 
+                                    <i onClick={() => setIsInput(true)}>
+                                        <FontAwesomeIcon icon={faPenToSquare} />
+                                    </i>
+                                </>
+                            )
                         }
                     </div>
                 </div>
