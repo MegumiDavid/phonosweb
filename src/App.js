@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+// Pages
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Dashboard from './pages/Dashboard'
+import Joguinhos from './pages/Joguinhos'
+import ThisGame from './pages/ThisGame'
+import VideoChat from './pages/VideoChat'
+import Error from './pages/Error'
+// import Layout from './components/Layout'
+
+// Routes
+import PrivateRoutes from './PrivateRoutes'
+import { Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <Routes>
+
+          <Route element={<PrivateRoutes/>}>
+              <Route path='/dashboard' element={<Dashboard/>} />
+              <Route path='/videochat' element={<VideoChat/>} />
+              <Route path='/joguinhos' element={<Joguinhos/>} />
+              <Route path='/joguinhos/:id' element={<ThisGame/>} />
+          </Route>
+
+          <Route path='/' element={<Home/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+          <Route path='*' element={<Error/>}/>
+
+        </Routes>
+    </>
   );
 }
 
