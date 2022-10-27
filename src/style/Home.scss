@@ -738,7 +738,7 @@ ul {
 &__toggle {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
 
   > span {
       display: block;

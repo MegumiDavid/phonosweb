@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import PopupContext from '../context/PopupProvider';
 
 import PatientTr from '../components/PatientTr'
 
@@ -11,6 +13,7 @@ import {
 import profilePic from '../images/profile-ex.png'
 
 const Patients = () => {
+  const { setIsOpen } = useContext(PopupContext)
   return (
     <div className="patients">
         <h1 className="h1">Pacientes</h1>
@@ -23,9 +26,9 @@ const Patients = () => {
                     </i>
                 </button>
             </div>
-            <button className="btnAdd">
-                + Pacientes
-            </button>
+                <button className="btnAdd" onClick={setIsOpen(true)}>
+                    + Pacientes
+                </button>
         </div>
 
         <table className="table">
