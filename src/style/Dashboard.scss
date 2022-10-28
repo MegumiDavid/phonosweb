@@ -637,7 +637,7 @@ $font-color: #181945;
     height: 587px;
     text-align: center;
     border-radius: 4.8rem;
-    padding: 5rem 7rem;
+    padding: 5rem 10rem;
     z-index: 100;
     border-radius: 32px;
 
@@ -704,6 +704,7 @@ $font-color: #181945;
                 color: #666666;
                 
                 margin-top: .1rem;
+                text-align: left;
             }
             
             .wrap {
@@ -731,6 +732,14 @@ $font-color: #181945;
                     }
                 }
             }
+        }
+
+        .inputShow {
+            font-weight: 600;
+            margin-top: -1rem;
+            font-size: 1.8rem;
+            color: $font-color;
+            text-align: left;
         }
 
         .btnSection {
@@ -782,16 +791,16 @@ $font-color: #181945;
     bottom: 0;
     left: 0;
 }
-
-.editPatient {
+ 
+/* .a {
     display: flex;
     flex-direction: column;
     align-items: center;
     width:  433px;
-    height: 587px;
+    min-height: 1000px;
     text-align: center;
     border-radius: 4.8rem;
-    padding: 5rem 7rem;
+    padding: 10rem 7rem;
     z-index: 100;
     border-radius: 32px;
 
@@ -808,6 +817,8 @@ $font-color: #181945;
         
     padding: 3rem 3rem;
     padding-top: 4rem;
+    
+    margin-top: .1rem;
 
     .closeSection {
         margin-bottom: 1rem;
@@ -852,6 +863,28 @@ $font-color: #181945;
         padding: 2rem 0rem;
         .data {
             padding: .5rem 0;
+
+            .label {
+                font-weight: 600;
+                font-size: 1rem;
+                color: #666666;
+            }
+        
+            .inputShow {
+                font-weight: 600;
+                margin-top: -1rem;
+                font-size: 1.8rem;
+                color: $font-color;
+                text-align: left;
+            }
+        
+            .showData {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                float: left;
+            }
+
             .label {
                 font-weight: 600;
                 font-size: 1rem;
@@ -887,31 +920,4 @@ $font-color: #181945;
             }
         }
 
-        .btnSection {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .submitPacient {
-            border: none;
-            border-radius: 6px;
-            background-color: $dark-blue;
-            padding: 1.3rem;
-            cursor: pointer;
-        
-            color: white;
-            font-weight: 500;
-            font-size: 1.5rem;
-            float: right;
-            transition: all 300ms ease;
-            width: 10rem;
-            margin-top: 3rem;
-            
-        
-            &:focus {outline: none;}
-            &:hover {background-color: #449bc0ba;}
-        }
-    }
-
-}
+ */

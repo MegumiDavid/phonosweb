@@ -5,7 +5,8 @@ import PopupContext from '../context/PopupProvider';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faXmark
+  faXmark,
+  faPenToSquare
  } from '@fortawesome/free-solid-svg-icons'
 
 const Popup = () => {
@@ -15,38 +16,38 @@ const Popup = () => {
         {
             currPopup === 'addPatient' && 
             (
-                <div class={`addPatient ${isOpen ? 'show' : ''} `}>
-                    <div class="closeSection">
+                <div className={`addPatient ${isOpen ? 'show' : ''} `}>
+                    <div className="closeSection">
                             <button onClick={ () => setIsOpen(false) }>
                                 <i> <FontAwesomeIcon icon={faXmark} /> </i>
                             </button>
                     </div>
-                    <div class="imgWrap">
-                        <div class="circle">
+                    <div className="imgWrap">
+                        <div className="circle">
                             <img src={myProfilePicture} alt="profile" />
                         </div>
                     </div>
-                    <form class="info">
-                        <div class="data">
-                            <div class="wrap">
-                                <p class="label">Nome</p>
-                                <input type="text" class="input" id="iconified" />
+                    <form className="info">
+                        <div className="data">
+                            <div className="wrap">
+                                <p className="label">Nome</p>
+                                <input type="text" className="input" id="iconified" />
                             </div>
                         </div>
-                        <div class="data">
-                            <div class="wrap">
-                                <p class="label">Data nascimento</p>
-                                <input type="date" class="input" id="iconified" />
+                        <div className="data">
+                            <div className="wrap">
+                                <p className="label">Data nascimento</p>
+                                <input type="date" className="input" id="iconified" />
                             </div>
                         </div>
-                        <div class="data">
-                            <div class="wrap">
-                                <p class="label">Principal defiencia</p>
-                                <input type="text" class="input" id="iconified" />
+                        <div className="data">
+                            <div className="wrap">
+                                <p className="label">Principal defiencia</p>
+                                <input type="text" className="input" id="iconified" />
                             </div>
                         </div>
-                        <div class="btnSection">
-                            <button type="submit" class="submitPacient">
+                        <div className="btnSection">
+                            <button type="submit" className="submitPacient">
                                 Criar
                             </button>
                         </div>
@@ -57,26 +58,39 @@ const Popup = () => {
         {
             currPopup === 'editPatient' && 
             (
-                <div class={`addPatient ${isOpen ? 'show' : ''} `}>
-                    <div class="closeSection">
+                <div className={`addPatient ${isOpen ? 'show' : ''} `}>
+                    <div className="closeSection">
                             <button onClick={ () => setIsOpen(false) }>
                                 <i> <FontAwesomeIcon icon={faXmark} /> </i>
                             </button>
                     </div>
-                    <div class="imgWrap">
-                        <div class="circle">
+                    <div className="imgWrap">
+                        <div className="circle">
                             <img src={myProfilePicture} alt="profile" />
                         </div>
                     </div>
-                    <form class="info">
-                        <div class="data">
-                            <div class="wrap">
-                                <p class="label">Principal defiencia</p>
-                                <input type="text" class="input" id="iconified" />
+                    <form className="info">
+
+                        <div className="data showData">
+                                <p className="label">Nome</p>
+                                <p className="inputShow">David Martinez</p>
+                        </div>
+                        <div className="data showData">
+                                <p className="label">Token</p>
+                                <p className="inputShow">12345</p>
+                        </div>
+                        <div className="data showData">
+                                <p className="label">Data Nasc</p>
+                                <p className="inputShow">26/02/2003</p>
+                        </div>
+                        <div className="data">
+                            <div className="wrap">
+                                <p className="label">Principal defiencia</p>
+                                <input type="text" className="input" id="iconified" />
                             </div>
                         </div>
-                        <div class="btnSection">
-                            <button type="submit" class="submitPacient">
+                        <div className="btnSection">
+                            <button type="submit" className="submitPacient">
                                 Salvar
                             </button>
                         </div>
