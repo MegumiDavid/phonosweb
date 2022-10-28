@@ -2,7 +2,7 @@
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Dashboard from './pages/Dashboard'
+import DashboardWrap from './pages/DashboardWrap'
 import Joguinhos from './pages/Joguinhos'
 import ThisGame from './pages/ThisGame'
 import VideoChat from './pages/VideoChat'
@@ -20,7 +20,7 @@ function App() {
         <Routes>
 
           <Route element={<PrivateRoutes/>}>
-              <Route path='/dashboard' element={<Dashboard/>} />
+              <Route path='/dashboard' element={<DashboardWrap/>} />
               <Route path='/videochat' element={<VideoChat/>} />
               <Route path='/joguinhos' element={<Joguinhos/>} />
               <Route path='/joguinhos/:id' element={<ThisGame/>} />

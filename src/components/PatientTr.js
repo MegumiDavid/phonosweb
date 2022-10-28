@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import profilePic from '../images/profile-ex.png'
+import PopupContext from '../context/PopupProvider';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -8,6 +9,14 @@ import {
 
 
 const PatientTr = ({ profilePic, name, token, bday, condition }) => {
+  
+
+  const { setIsOpen, setCurrPopup } = useContext(PopupContext)
+  const handleEditBtn = () => {
+    setCurrPopup('editPatient')
+    setIsOpen(true)
+  }
+  
   return (
     <tr>
         <th className='firstCol'>
@@ -18,7 +27,7 @@ const PatientTr = ({ profilePic, name, token, bday, condition }) => {
         <th>{bday}</th>
         <th>{condition}</th>
         <th className="action">
-            <button>
+            <button onClick={ handleEditBtn }>
             <i>
                 <FontAwesomeIcon icon={faPenToSquare} />
             </i>

@@ -13,7 +13,13 @@ import {
 import profilePic from '../images/profile-ex.png'
 
 const Patients = () => {
-  const { setIsOpen } = useContext(PopupContext)
+  const { setIsOpen, setCurrPopup } = useContext(PopupContext)
+
+  const handleAddBtn = () => {
+    setCurrPopup('addPatient')
+    setIsOpen(true)
+  }
+
   return (
     <div className="patients">
         <h1 className="h1">Pacientes</h1>
@@ -26,7 +32,7 @@ const Patients = () => {
                     </i>
                 </button>
             </div>
-                <button className="btnAdd" onClick={setIsOpen(true)}>
+                <button className="btnAdd" onClick={ handleAddBtn }>
                     + Pacientes
                 </button>
         </div>

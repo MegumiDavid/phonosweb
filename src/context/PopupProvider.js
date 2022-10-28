@@ -4,9 +4,10 @@ const PopupContext = createContext({})
 
 export const PopupProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false)
-
+    const [currPopup, setCurrPopup] = useState('')
+    console.log(isOpen);
     return (
-        <PopupContext.Provider value={{ isOpen, setIsOpen }}>
+        <PopupContext.Provider value={{ isOpen, setIsOpen, currPopup, setCurrPopup }}>
             {children}
         </PopupContext.Provider>
     )
