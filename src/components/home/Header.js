@@ -10,9 +10,7 @@ function Header() {
             <div className="header__text">
                 <h1>Fono de maneira profissional e fácil</h1>
                 <p>
-                Lorem ipsum is placeholder text commonly used in the graphic,
-                print, and publishing industries for previewing layouts and visual
-                mockups.
+                Para o profissional que procura facilidade de acesso, melhor gerenciamento e maior facilidade na comunicação com pacientes e ferramentas de apoio, o Phonos é a plataforma certa.
                 </p>
                 <Link to="/signup" className="btn">
                   Cadastre-se agora

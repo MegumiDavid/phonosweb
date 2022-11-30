@@ -7,7 +7,8 @@ import {
     faDumbbell, 
     faGamepad,
     faComments,
-    faCircleChevronRight
+    faCircleChevronRight,
+    faPeopleRoof
  } from '@fortawesome/free-solid-svg-icons'
 
 const Services = () => {
@@ -31,18 +32,18 @@ const Services = () => {
               </div>
             </div>
             <h3>Consulta online</h3>
-            <p>Lorem ipsum is placeholder text commonly used in the graphic</p>
+            <p>Agendamento de consulta pelo app do profissional.</p>
           </div>
           <div className="hmcard">
             <div className="hmbox hmbox--2">
               <div className="icon-box">
                 <i>
-                  <FontAwesomeIcon icon={faDumbbell} />
+                  <FontAwesomeIcon icon={faPeopleRoof} />
                 </i>
               </div>
             </div>
-            <h3>Exercicios</h3>
-            <p>Lorem ipsum is placeholder text commonly used in the graphic</p>
+            <h3>Gestão de pacientes</h3>
+            <p>Gerenciamento de pacientes facilitado dentro da plataforma.</p>
           </div>
           <div className="hmcard">
             <div className="hmbox hmbox--3">
@@ -55,7 +56,7 @@ const Services = () => {
             <div className="text">
               <h3>Jogos</h3>
               <p>
-                Lorem ipsum is placeholder text commonly used in the graphic
+                Jogos para auxilio no tratamento fonoaudiológico.
               </p>
             </div>
           </div>
@@ -67,8 +68,8 @@ const Services = () => {
                 </i>
               </div>
             </div>
-            <h3>Chat Video e Texto</h3>
-            <p>Lorem ipsum is placeholder text commonly used in the graphic</p>
+            <h3>Video Chamada</h3>
+            <p>Ferramentas para chamadas online. </p>
           </div>
         </div>
 

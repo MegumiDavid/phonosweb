@@ -50,7 +50,7 @@ const Sidebar = () => {
                     </li>
                 </Link>
                 <div className="dashboardLine hideSm"></div>
-                <Link to="/videochat" className="navlink">
+                <Link to="/consultas" className="navlink">
                     <li className="navitem hideSm">Video Chamada</li>
                     <li className="navitem hideBg">
                     <i>

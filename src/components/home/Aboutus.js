@@ -10,18 +10,12 @@ const Aboutus = () => {
             <img src={aboutusImg} alt="fono" className="fonoimg" />
           </div>
           <div className="colOneTwo">
-            <h2>Sobre <span>Phonos.</span></h2>
+            <h2>Sobre o<span> Team Phonos</span></h2>
             <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups.Lorem ipsum is placeholder text commonly used in the
-              graphic, print, and publishing industries for previewing layouts
-              and visual mockups.
+              Desde cedo, nossa equipe de desenvolvimento teve contato com a fonoaudiologia, seja por ter que passar por tratamentos dessa espécie, seja por ter contato com profissionais da área. Nesse âmbito vimos que havia certa demanda de meios digitais que facilitassem o trabalho desses profissionais.
             </p>
             <p>
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups.
+              Tendo em vista o mercado de softwares de fonoaudiologia, que é predado por produtos caros e com poucas funcionalidades, decidimos desenvolver um produto que atendesse melhor às necessidades dos fonoaudiólogos.
             </p>
           </div>
         </div>

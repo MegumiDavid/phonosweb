@@ -921,3 +921,22 @@ $font-color: #181945;
         }
 
  */
+
+ .consultas {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    gap: 4rem;
+
+    .h1 {
+        font-weight: 700;
+        font-size: 3.4rem;
+        color: $font-color;
+        line-height: 1rem;
+    }
+
+    .box {
+        width: 100%;
+        height: 80%;
+        background-color: #181945;
+    }
+ }

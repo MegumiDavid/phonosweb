@@ -5,7 +5,7 @@ import Signup from './pages/Signup'
 import DashboardWrap from './pages/DashboardWrap'
 import Joguinhos from './pages/Joguinhos'
 import ThisGame from './pages/ThisGame'
-import VideoChat from './pages/VideoChat'
+import Consultas from './pages/Consultas'
 import Error from './pages/Error'
 // import Layout from './components/Layout'
 
@@ -21,7 +21,7 @@ function App() {
 
           <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<DashboardWrap/>} />
-              <Route path='/videochat' element={<VideoChat/>} />
+              <Route path='/consultas' element={<Consultas/>} />
               <Route path='/joguinhos' element={<Joguinhos/>} />
               <Route path='/joguinhos/:id' element={<ThisGame/>} />
           </Route>
