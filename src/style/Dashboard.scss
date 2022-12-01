@@ -32,13 +32,9 @@ $font-color: #181945;
 
 .gridWrapper {
     display: grid;
-    grid-template-columns: [sidebar-start] 100px [sidebar-end main-start] calc(100vw - 250px) [main-end];
     grid-template-rows: minmax(100vh, min-content);
     overflow-x: hidden;
-
-    @media only screen and (max-width: 1780px) {
-        grid-template-columns: [sidebar-start] 90px [sidebar-end main-start] calc(100vw - 5vw) [main-end];
-    }
+    grid-template-columns: [sidebar-start] 5vw [sidebar-end main-start] 95vw [main-end];
 }
 
 
@@ -47,15 +43,12 @@ $font-color: #181945;
     background-color: $dark-blue;
     grid-row: 1 / -1;
 
-    padding: 4rem 4rem;
     
-    @media only screen and (max-width: 1780px) {
-        padding: 4rem 2rem;
-
-        img {
-            margin-right: 0rem;
-        }
-    }
+    padding: 4rem 4rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     display: grid;
 
@@ -66,10 +59,7 @@ $font-color: #181945;
         font-weight: 800;
         color: white;
         align-self: flex-start;
-
-        img {
-            margin-right: 1rem;
-        }
+        margin: 0 auto;
     }
 
     .nav {
@@ -85,32 +75,24 @@ $font-color: #181945;
             transition: all 300ms ease;
             &:hover {background-color: #449bc0ba;}
             
-            @media only screen and (max-width: 1780px) {
-                text-align: center;
-                margin-bottom: 5rem;
-                i {
-                    font-size: 2.5rem;
-                    transition: all 300ms ease;
-                    &:hover {color: rgba(255, 255, 255, 0.773);}
-                }
+            text-align: center;
+            margin-bottom: 5rem;
+
+            i {
+                font-size: 3rem;
+                transition: all 300ms ease;
+                &:hover {color: rgba(255, 255, 255, 0.773);}
             }
         }
         
         .navlink {
             width: 100%;
             text-decoration: none;
+            color: white;
 
             @media only screen and (max-width: 1780px) {
                 text-align: center;
             }
-        }
-
-        .dashboardLine {
-            border: 0;
-            height: 1.4px;
-            background: #f1f1f1;
-            width: 100%;
-            @include margin-y(1.5rem)
         }
     }
 
@@ -128,7 +110,7 @@ $font-color: #181945;
         
         i {
             margin-right: 1rem;
-            font-size: 2.5rem;
+            font-size: 3rem;
 
             @media only screen and (max-width: 1780px) {
                 margin-right: 0rem;
@@ -146,16 +128,14 @@ $font-color: #181945;
 .main {
     grid-column: main-start / main-end;
     grid-row: 1 / -1;
-    padding: 4rem;
+    padding: 5rem;
     
     @media only screen and (max-width: 1780px) {
         padding: 3rem;
     }
 
-    display: grid; // 73VH 8vh
+    display: grid;
     grid-template-rows: [welcome-start] 100px [welcome-end infos-start] 750px [infos-end];
-    // gap: minmax(200px, 10vh);
-    // gap: 10vh;
     gap: 100px;
 
     .topbar {
@@ -184,10 +164,10 @@ $font-color: #181945;
     section.infos {
         display: grid;
         grid-row: infos-start / infos-end;
-        grid-template-columns: 73.5% 22.5%;
+        grid-template-columns: 74% 24%;
         align-items: start;
-        //grid-template-rows: 80vh;
-        gap: 4rem;
+        gap: 2%;
+
         .h1 {
             font-weight: 700;
             font-size: 3.4rem;
@@ -269,7 +249,7 @@ $font-color: #181945;
                 table-layout: fixed;/* even columns width , fix width of table too*/
             }
             thead {
-                width: calc( 100% - .01em )/* scrollbar is average 1em/16px width, remove it from thead width */
+                width: calc( 100% - .01em ); /* scrollbar is average 1em/16px width, remove it from thead width */
             }
             table {
                 width: 400px;
@@ -283,7 +263,8 @@ $font-color: #181945;
                 border-radius: 16px;
                 box-shadow: 0px 12px 26px rgba(16, 30, 115, 0.06);
                 width: 100%;
-
+                
+                
                 thead {
                     font-weight: 700;
                     font-size: 1.4rem;
@@ -304,7 +285,7 @@ $font-color: #181945;
                     overflow: scroll;
                     height: 50vh;
                     width: 100%;
-
+                    
                     tr {
                         border-bottom: solid 1.5px #DBDDE0;
                     }
@@ -316,30 +297,30 @@ $font-color: #181945;
                         font-weight: 400;
                         font-size: 1.4rem;
                         color: #52575C;
-
+                        
                         &.firstCol {
                             transform: translateY(-10px);
                         }
-
+                        
                         img {
                             margin-right: 1rem;
                             transform: translateY(10px);
                         }
-    
+                        
                         &.action {
                             text-align: center;
-
+                            
                             button {
                                 border: none;
                                 background: rgba(0, 0, 0, 0);
                                 cursor: pointer;
-
+                                
                                 &:focus {outline: none;}
-
+                                
                                 i {
                                     color: #A0A4A8;
                                     transition: all 200ms ease;
-
+                                    
                                     &:hover {
                                         color: $font-color;
                                     }
@@ -349,15 +330,12 @@ $font-color: #181945;
                     }
                 }
 
-
+                
             }
         }
         
         .myprofile {
-            // background-color: $dark-red;
             grid-column: 2 / 3;
-            // grid-row: 1 / -1;
-            // margin-top: 6.5rem ;
             width:  100%;
             .h1 {
                 font-weight: 700;
@@ -422,11 +400,17 @@ $font-color: #181945;
                         .wrap {
                             display: flex;
                             justify-content: space-between;
-
+                            width: 100%;
+                            
                             form {
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: baseline;
+                                width: 100%;
+                                i {
+                                    width: 100%;
+                                    float: right;
+                                }
                             }
 
                             button {
@@ -924,7 +908,8 @@ $font-color: #181945;
 
  .consultas {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
     gap: 4rem;
 
     .h1 {
@@ -934,9 +919,231 @@ $font-color: #181945;
         line-height: 1rem;
     }
 
-    .box {
+    .consultaBox {
         width: 100%;
-        height: 80%;
+        min-height: 750px;
         background-color: #181945;
+        border-radius: 32px;
+        margin-top: 7rem;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        position: relative;
+
+        .semAgenda {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            transform: translateY(-50px);
+        }
+
+        .comAgenda {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            transform: translateY(-100px);
+
+            h3 {
+                font-weight: 800;
+                font-size: 3rem;
+                color: #449BC0;
+            }
+
+            .horario {
+                margin: 2.5rem 0;
+            }
+
+            .pacienteName {
+                margin-top: 3rem;
+                color: #5B5B5B;
+                font-weight: 700;
+                font-size: 2rem;
+            }
+
+            .address {
+                margin-top: 3rem;
+                font-weight: 600;
+                font-size: 2rem;
+            }
+
+            button {
+                margin-top: 2rem;
+            }
+        }
+
+        i {
+            color: #CACACA;
+            font-size: 15rem;
+        }
+        
+        p {
+            color: #A1A1A1;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            background-color: $dark-blue;
+            color: white;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 300ms ease;
+            
+
+            font-weight: 600;
+            font-size: 1.6rem;
+
+            
+            &:focus {outline: none;}
+            &:hover {background-color: #449bc0ba;}
+        }
+
+        .newAgenda {
+            position: absolute;
+            bottom: 50px;
+        }
+    }
+
+    .futuroBox {
+        overflow-Y: auto;
+        width: 100%;
+        max-height: 750px;
+        padding-bottom: .5rem;
+        padding-right: 1rem;
+
+        border-radius: 32px;
+        margin-top: 7rem;
+
+        background: #FFFFFF;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            &::-webkit-scrollbar-track {
+                background: #dedede;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: #99bfcf;
+                border-radius: 7px;
+                border: 0px solid #ffffff;
+            }
+        }
+
+        .historicoBox {
+            overflow-Y: auto;
+            width: 100%;
+            max-height: 750px;
+            padding-bottom: .5rem;
+            padding-right: 1rem;
+    
+            border-radius: 32px;
+            margin-top: 7rem;
+    
+            background: #FFFFFF;
+    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            &::-webkit-scrollbar-track {
+                background: #dedede;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: #99bfcf;
+                border-radius: 7px;
+                border: 0px solid #ffffff;
+            }
+        }
+
+ }
+
+ .consultaCard {
+    width: 97.5%;
+    background-color: $light-blue;
+    margin: 0 1%;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 10rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+
+    overflow-x: hidden;
+    min-height: 150px;
+
+    background-color: white;
+    border-left: 15px solid #449BC0;
+
+    .topWrap {
+        display: flex;
+        width: 100%;
+        // align-items: flex-start;
+        justify-content: space-between;
+
+        p {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .editBtn {
+            cursor: pointer;
+            background: none;
+            border: none;
+
+            i:hover {
+                color: $grey;
+            }
+        }
+    }
+
+    .bottomWrap {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        .tipoConsulta {
+            color: #449BC0;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        
+        .statusConsulta {
+            font-weight: 800;
+            font-size: 20px;
+
+            &.agendado {
+                color: #EF970E;
+            }
+
+            &.cancelado {
+                color: #EF0E0E;
+            }
+
+            &.finalizado {
+                color: #449BC0;
+            }
+        }
     }
  }

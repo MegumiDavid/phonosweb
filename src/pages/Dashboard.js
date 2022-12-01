@@ -10,9 +10,7 @@ import PopupContext from '../context/PopupProvider';
 import '../style/Dashboard.scss'
 
 const Dashboard = () => {
-  const { isOpen, currPopup } = useContext(PopupContext)
-  console.log(isOpen);
-  console.log(currPopup);
+  const { isOpen } = useContext(PopupContext)
   
   return (
     <>

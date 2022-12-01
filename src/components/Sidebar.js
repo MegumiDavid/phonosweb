@@ -28,45 +28,36 @@ const Sidebar = () => {
             <Link to='/dashboard'>
                 <img src={logo} alt="phonos" className="logo" />
             </Link>
-            <div className="hideSm">Phonos.</div>
         </div>
         <nav className="nav">
             <ul>
-                <Link to="/dashboard" className="navlink">
-                    <li className="navitem hideSm">Home</li>
-                    <li className="navitem hideBg">
-                    <i>
-                        <FontAwesomeIcon icon={faHouse} />
-                    </i>
-                    </li>
-                </Link>
-                <div className="dashboardLine hideSm"></div>
-                <Link to="/joguinhos" className="navlink">
-                    <li className="navitem hideSm">Joguinhos</li>
-                    <li className="navitem hideBg">
-                    <i>
-                        <FontAwesomeIcon icon={faGamepad} />
-                    </i>
-                    </li>
-                </Link>
-                <div className="dashboardLine hideSm"></div>
-                <Link to="/consultas" className="navlink">
-                    <li className="navitem hideSm">Video Chamada</li>
-                    <li className="navitem hideBg">
-                    <i>
-                        <FontAwesomeIcon icon={faVideo} />
-                    </i>
-                    </li>
-                </Link>
+                <li className='navitem'>
+                    <Link to="/dashboard" className="navlink">
+                        <i>
+                            <FontAwesomeIcon icon={faHouse} />
+                        </i>
+                    </Link>
+                </li>
+                <li className='navitem'>
+                    <Link to="/joguinhos" className="navlink">
+                        <i>
+                            <FontAwesomeIcon icon={faGamepad} />
+                        </i>
+                    </Link>
+                </li>
+                <li className='navitem'>
+                    <Link to="/consultas" className="navlink">
+                        <i>
+                            <FontAwesomeIcon icon={faVideo} />
+                        </i>
+                    </Link>
+                </li>
             </ul>
         </nav>
         <button className="logout" onClick={logOut}>
         <i>
             <FontAwesomeIcon icon={faArrowRightFromBracket} />
         </i>
-        <div className="hideSm">
-                Sair
-        </div>
         </button>
     </div>  
   )

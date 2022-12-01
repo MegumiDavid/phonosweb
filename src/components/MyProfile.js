@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef  } from 'react'
 
 import myProfilePic from '../images/profile.png'
 
@@ -15,6 +15,18 @@ const myProfileData = {
 const MyProfile = () => {
   const [inputValue, setInputValue] = useState(myProfileData.name)
   const [isInput, setIsInput] = useState(false)
+
+
+  const inputElement = useRef();
+
+  const focusInput = () => {
+    inputElement.current.focus();
+  };
+
+  const handleClick = () => {
+    myProfileData.name = inputValue
+    focusInput()
+  }
 
   return (
     <div className="myprofile">
@@ -33,15 +45,16 @@ const MyProfile = () => {
                         {
                             isInput ? (
                                 <form>
-                                    <input value={inputValue} 
+                                    <input value={inputValue} ref={inputElement}
                                            onChange={(e) => setInputValue(e.target.value)}
                                     />
-                                    <button type='submit'  
+                                    <button type='submit' 
                                         onClick={() => setIsInput(false)}>
                                         <i>
                                             <FontAwesomeIcon 
                                                 icon={faFloppyDisk} 
-                                                onClick={() => myProfileData.name = inputValue}/>
+                                                onClick={handleClick}
+                                            />
                                         </i>
                                     </button>
                                 </form>

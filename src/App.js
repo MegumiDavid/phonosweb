@@ -5,7 +5,7 @@ import Signup from './pages/Signup'
 import DashboardWrap from './pages/DashboardWrap'
 import Joguinhos from './pages/Joguinhos'
 import ThisGame from './pages/ThisGame'
-import Consultas from './pages/Consultas'
+import ConsultasWrap from './pages/ConsultasWrap'
 import Error from './pages/Error'
 // import Layout from './components/Layout'
 
@@ -21,7 +21,7 @@ function App() {
 
           <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<DashboardWrap/>} />
-              <Route path='/consultas' element={<Consultas/>} />
+              <Route path='/consultas' element={<ConsultasWrap/>} />
               <Route path='/joguinhos' element={<Joguinhos/>} />
               <Route path='/joguinhos/:id' element={<ThisGame/>} />
           </Route>

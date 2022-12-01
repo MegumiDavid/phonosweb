@@ -9,7 +9,7 @@ import {
   faMagnifyingGlass
  } from '@fortawesome/free-solid-svg-icons'
 
- import '../style/Dashboard.scss'
+import '../style/Dashboard.scss'
 import profilePic from '../images/profile-ex.png'
 
 const Patients = () => {
