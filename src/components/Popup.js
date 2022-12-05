@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import myProfilePicture from '../images/anonimous-profile.png'
 import PopupContext from '../context/PopupProvider';
 
@@ -8,7 +8,75 @@ import {
  } from '@fortawesome/free-solid-svg-icons'
 
 const Popup = () => {
-    const { isOpen, setIsOpen, currPopup } = useContext(PopupContext)
+    const { isOpen, setIsOpen, currPopup, currPacienteToken, isChange, setIsChange } = useContext(PopupContext)
+    const [paciente, setPaciente] = useState([])
+
+    // Add patient inputs
+    const [fnome, setFnome] = useState('')
+    const [lnome, setLnome] = useState('')
+    const [dataNasc, setDataNasc] = useState('')
+    const [condicao, setCondicao] = useState('')
+
+    const getPacientes = async () =>  {
+        const response = await fetch(`http://localhost:3000/pacientes/${currPacienteToken}`)
+        const data = await response.json()
+        setPaciente(data)
+    } 
+
+    useEffect(() => {
+        getPacientes()
+    }, [currPacienteToken])
+
+    const onAddPatient = async (e) => {
+        e.preventDefault()
+        const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    fname: fnome,
+                    lname: lnome,
+                    condicao: condicao,
+                    bday: dataNasc,
+                    img: 'https://picsum.photos/200',
+                    fonos: ['12345']
+                })
+        };
+        const response = await fetch('http://localhost:3000/pacientes/', requestOptions);
+        const data = await response.json();
+        console.log(data)
+        alert('Paciente criado com sucesso')
+        setIsChange(!isChange)
+    }   
+
+    const onEditPacient = async (e) => {
+        e.preventDefault()
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                token: paciente[0].token,
+                fname: paciente[0].fname,
+                lname: paciente[0].lname,
+                bday: paciente[0].bday,
+                img: paciente[0].img,
+                fonos: paciente[0].fonos,
+                password: paciente[0].password,
+                firstLogin: paciente[0].firstLogin,
+                condicao: condicao
+            })
+        };
+        const response = await fetch(`http://localhost:3000/pacientes/${currPacienteToken}`, requestOptions);
+        const data = await response.json();
+        console.log(data)
+        alert('Paciente alterado com sucesso')
+        setIsChange(!isChange)
+    }
+
+
     return (
     <>
         {
@@ -25,23 +93,29 @@ const Popup = () => {
                             <img src={myProfilePicture} alt="profile" />
                         </div>
                     </div>
-                    <form className="info">
+                    <form className="info" onSubmit={onAddPatient}>
                         <div className="data">
                             <div className="wrap">
-                                <p className="label">Nome</p>
-                                <input type="text" className="input" id="iconified" />
+                                <p className="label">Primeiro Nome</p>
+                                <input type="text" className="input" id="iconified" onChange={(e) => setFnome(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="data">
+                            <div className="wrap">
+                                <p className="label">Ultimo Nome</p>
+                                <input type="text" className="input" id="iconified" onChange={(e) => setLnome(e.target.value)} />
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Data nascimento</p>
-                                <input type="date" className="input" id="iconified" />
+                                <input type="date" className="input" id="iconified" onChange={(e) => setDataNasc(e.target.value)}/>
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Condicao</p>
-                                <input type="text" className="input" id="iconified" />
+                                <input type="text" className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)}/>
                             </div>
                         </div>
                         <div className="btnSection">
@@ -67,24 +141,24 @@ const Popup = () => {
                             <img src={myProfilePicture} alt="profile" />
                         </div>
                     </div>
-                    <form className="info">
+                    <form className="info" onSubmit={onEditPacient}>
 
                         <div className="data showData">
                                 <p className="label">Nome</p>
-                                <p className="inputShow">David Martinez</p>
+                                <p className="inputShow">{`${paciente[0].fname} ${paciente[0].lname}`}</p>
                         </div>
                         <div className="data showData">
                                 <p className="label">Token</p>
-                                <p className="inputShow">12345</p>
+                                <p className="inputShow">{paciente[0].token}</p>
                         </div>
                         <div className="data showData">
                                 <p className="label">Data Nasc</p>
-                                <p className="inputShow">26/02/2003</p>
+                                <p className="inputShow">{paciente[0].bday}</p>
                         </div>
                         <div className="data">
                             <div className="wrap">
-                                <p className="label">Principal defiencia</p>
-                                <input type="text" className="input" id="iconified" />
+                                <p className="label">Condição</p>
+                                <input type="text" className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)} />
                             </div>
                         </div>
                         <div className="btnSection">

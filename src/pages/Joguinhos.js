@@ -51,18 +51,12 @@ const Joguinhos = () => {
                         <Game 
                             id={2}
                             img={joguinho2}
-                            title={'Cruzadinha'}
+                            title={'Caça Palavra'}
                             desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
                         />
                         <Game 
                             id={3}
                             img={joguinho3}
-                            title={'Caça Palavra'}
-                            desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
-                        />
-                        <Game 
-                            id={4}
-                            img={joguinho4}
                             title={'Jogo da Memoria'}
                             desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
                         />

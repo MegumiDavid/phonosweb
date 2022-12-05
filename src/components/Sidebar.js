@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import AuthContext from '../context/AuthProvider'
+import { AuthContext } from '../context/AuthContext'
 import logo from '../images/logo.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/Dashboard.scss'
@@ -13,11 +13,9 @@ import {
 
 const Sidebar = () => {
   const navigate = useNavigate()
-  const { auth, setAuth } = useContext(AuthContext)
+  const [ auth, setAuth ] = useContext(AuthContext)
   const logOut = () => {
-    setAuth({
-        loged: false
-    })
+    setAuth(false)
     localStorage.setItem("auth", JSON.stringify(auth))
     navigate('/')
   }

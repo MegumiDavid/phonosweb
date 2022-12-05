@@ -1,7 +1,7 @@
 import React from 'react'
 import '../style/Login.scss'
 
-function Login() {
+const Login = () => {
   return (
     <div className='body'>
         <span class="line"></span>

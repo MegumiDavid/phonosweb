@@ -1,12 +1,9 @@
-import React, { useState, useRef  } from 'react'
+import React, { useState, useRef, useEffect  } from 'react'
 
 import myProfilePic from '../images/profile.png'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-    faPenToSquare,
-    faFloppyDisk
-} from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
 const myProfileData = {
        'name' : 'Megumi David'
@@ -15,7 +12,20 @@ const myProfileData = {
 const MyProfile = () => {
   const [inputValue, setInputValue] = useState(myProfileData.name)
   const [isInput, setIsInput] = useState(false)
+  const [fonoData, setFonoData] = useState([])
+  
+  const getMyProfile = async () =>  {
+    const response = await fetch(`http://localhost:3000/fonos/${12345}`)
+    const data = await response.json()
+    console.log(data)
+    console.log(data[0].crfa)
+    setFonoData(data)
+    console.log(fonoData.crfa)
+  } 
 
+  useEffect(() => {
+    getMyProfile()
+  }, [])
 
   const inputElement = useRef();
 

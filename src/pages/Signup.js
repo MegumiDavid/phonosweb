@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import AuthContext from '../context/AuthProvider'
+import { AuthContext } from '../context/AuthContext'
 
 import '../style/Login.scss'
 import boxImg from '../images/rectangle1.png'
@@ -14,7 +14,7 @@ import {
  
  const Signup = () => {
      
-     const { setAuth } = useContext(AuthContext)
+     const [ setAuth ] = useContext(AuthContext)
      const navigate = useNavigate()
      
      const [crfa, setCrfa] = useState('')

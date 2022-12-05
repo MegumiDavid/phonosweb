@@ -7,17 +7,16 @@ import Joguinhos from './pages/Joguinhos'
 import ThisGame from './pages/ThisGame'
 import ConsultasWrap from './pages/ConsultasWrap'
 import Error from './pages/Error'
-// import Layout from './components/Layout'
 
 // Routes
 import PrivateRoutes from './PrivateRoutes'
 import { Routes, Route } from 'react-router-dom';
-
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <>
-        <Routes>
+    <AuthProvider>
+      <Routes>
 
           <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<DashboardWrap/>} />
@@ -26,13 +25,13 @@ function App() {
               <Route path='/joguinhos/:id' element={<ThisGame/>} />
           </Route>
 
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<Signup/>}/>
-          <Route path='*' element={<Error/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='*' element={<Error/>}/>
 
-        </Routes>
-    </>
+      </Routes>
+    </AuthProvider>
   );
 }
 
