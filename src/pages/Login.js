@@ -28,8 +28,11 @@ const Login = () => {
     if (data[0].password !== pwd) {
       return false
     }
-    setAuth({ loged: !auth, crfa: crfa })
-    console.log(auth)
+    setAuth({ loged: true, crfa: crfa })
+
+    console.log(auth.loged);
+    console.log(auth.crfa);
+
     return true
   }
 
@@ -37,8 +40,6 @@ const Login = () => {
     e.preventDefault()
 
     if (await getFonoCrfa(crfa)) {
-      setAuth({ loged: !auth, crfa: crfa })
-      console.log(auth)
       localStorage.setItem("auth", JSON.stringify(auth))
       navigate('/dashboard')
     } else {
@@ -58,7 +59,7 @@ const Login = () => {
             <div className="box">
                 <h1>Faça seu Login, <span className="highlight">Fono</span></h1>
                 <form onSubmit={handleSubmit}>
-                    <div class="inputWrapper">
+                    <div className="inputWrapper">
                         <label htmlFor="crfa">CRFA</label>
                         <input 
                           type="text" 
@@ -70,7 +71,7 @@ const Login = () => {
                           required
                         />
                     </div>
-                    <div class="inputWrapper">
+                    <div className="inputWrapper">
                         <label htmlFor="pwd">Senha</label>
                         <input 
                           type={`${isVisible ? 'text' : 'password'}`}
@@ -85,7 +86,7 @@ const Login = () => {
                             </i>
                         </button>
                     </div>
-                    <button type="submit" class="btn">Entrar</button>
+                    <button type="submit" className="btn">Entrar</button>
                 </form>        
                 <p>Não possui sua conta? <Link to='/signup' className='ctaLink'>Sign up</Link></p>    
             </div>

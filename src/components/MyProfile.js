@@ -17,10 +17,7 @@ const MyProfile = () => {
   const getMyProfile = async () =>  {
     const response = await fetch(`http://localhost:3000/fonos/${12345}`)
     const data = await response.json()
-    console.log(data)
-    console.log(data[0].crfa)
-    setFonoData(data)
-    console.log(fonoData.crfa)
+    setFonoData(data[0])
   } 
 
   useEffect(() => {
@@ -44,12 +41,12 @@ const MyProfile = () => {
         <div className="mpbox">
             <div className="imgWrap">
                 <div className="circle">
-                    <img src={myProfilePic} alt="profile" />
+                    <img src={fonoData.img} alt="profile" />
                 </div>
-                <h3 className="name">{myProfileData.name}</h3>
+                <h3 className="name">{`${fonoData.fname} ${fonoData.lname}`}</h3>
             </div>
             <div className="info">
-                <div className="data">
+                {/* <div className="data">
                     <p className="label">Nome</p>
                     <div className="wrap">
                         {
@@ -79,11 +76,20 @@ const MyProfile = () => {
                             )
                         }
                     </div>
+                </div> */}
+                <div className="data">
+                    <p className="label">Nome</p>
+                    <div className="wrap">
+                        <p className="input">{`${fonoData.fname} ${fonoData.lname}`}</p>
+                        <i>
+                            {/* <FontAwesomeIcon icon={faPenToSquare} /> */}
+                        </i>
+                    </div>
                 </div>
                 <div className="data">
                     <p className="label">CRFA</p>
                     <div className="wrap">
-                        <p className="input">12345</p>
+                        <p className="input">{fonoData.crfa}</p>
                         <i>
                             {/* <FontAwesomeIcon icon={faPenToSquare} /> */}
                         </i>
@@ -92,7 +98,7 @@ const MyProfile = () => {
                 <div className="data">
                     <p className="label">Email</p>
                     <div className="wrap">
-                        <p className="input">megumi@david.com</p>
+                        <p className="input">{fonoData.email}</p>
                         <i>
                             {/* <FontAwesomeIcon icon={faPenToSquare} /> */}
                         </i>

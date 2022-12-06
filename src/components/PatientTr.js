@@ -8,7 +8,7 @@ import {
  } from '@fortawesome/free-solid-svg-icons'
 
 
-const PatientTr = ({ profilePic, fname, lname, token, bday, condition }) => {
+const PatientTr = ({ profilePic, fname, lname, token, bday, img, condition }) => {
   const { setIsOpen, setCurrPopup, setCurrPacienteToken } = useContext(PopupContext)
   const handleEditBtn = () => {
     setCurrPopup('editPatient')
@@ -19,7 +19,7 @@ const PatientTr = ({ profilePic, fname, lname, token, bday, condition }) => {
   return (
     <tr>
         <th className='firstCol'>
-            <img src={profilePic} alt="profile" />
+            <img src={ img } alt="profile" />
             <p>{`${fname} ${lname}`}</p>
         </th>
         <th>{token}</th>

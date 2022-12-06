@@ -18,12 +18,12 @@ function App() {
     <AuthProvider>
       <Routes>
 
-          <Route element={<PrivateRoutes/>}>
-              <Route path='/dashboard' element={<DashboardWrap/>} />
-              <Route path='/consultas' element={<ConsultasWrap/>} />
-              <Route path='/joguinhos' element={<Joguinhos/>} />
-              <Route path='/joguinhos/:id' element={<ThisGame/>} />
-          </Route>
+        <Route element={<PrivateRoutes/>}>
+            <Route path='/dashboard' element={<DashboardWrap/>} />
+            <Route path='/consultas' element={<ConsultasWrap/>} />
+            <Route path='/joguinhos' element={<Joguinhos/>} />
+            <Route path='/joguinhos/:id' element={<ThisGame/>} />
+        </Route>
 
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>

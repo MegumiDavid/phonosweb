@@ -5,12 +5,9 @@ import Sidebar from '../components/Sidebar'
 import joguinho1 from '../images/joguinhos1.png'
 import joguinho2 from '../images/joguinhos2.png'
 import joguinho3 from '../images/joguinhos3.png'
-import joguinho4 from '../images/joguinhos4.png'
 
 import Topbar from '../components/Topbar'
 import Game from '../components/Game'
-
-import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 

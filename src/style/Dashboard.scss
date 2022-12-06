@@ -310,6 +310,9 @@ $font-color: #181945;
                             img {
                                 transform: translateY(10px);
                                 margin-right: 25px;
+                                width: 32px;
+                                height: 32px;
+                                border-radius: 50%;
                             }
 
                             p {
@@ -393,6 +396,7 @@ $font-color: #181945;
                         // border: 3px solid #449BC0;
                         width: 100%;
                         height: auto;
+                        border-radius: 50%;
                     }
                 }
 

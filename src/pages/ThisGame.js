@@ -7,15 +7,15 @@ const ThisGame = () => {
   let params = useParams()
   const gameList = ['Jogo da Forca', 'Cruzadinha', 'Caça Palavra', 'Jogo da Memoria']
   return (
-    <div class="gridWrapper">
+    <div className="gridWrapper">
         <Sidebar />
-        <main class="thisgame">
-            <div class="topbar">
-                <h1 class="h1">{gameList[params.id - 1]}</h1>
+        <main className="thisgame">
+            <div className="topbar">
+                <h1 className="h1">{gameList[params.id - 1]}</h1>
                 <div className="dsline"></div>
             </div>
 
-            <div class="gamebox">
+            <div className="gamebox">
             </div>
         </main>
     </div>

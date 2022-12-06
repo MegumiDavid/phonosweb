@@ -48,6 +48,10 @@ const Popup = () => {
         console.log(data)
         alert('Paciente criado com sucesso')
         setIsChange(!isChange)
+        setCondicao('')
+        setDataNasc('')
+        lnome('')
+        fnome('')
     }   
 
     const onEditPacient = async (e) => {
@@ -74,6 +78,7 @@ const Popup = () => {
         console.log(data)
         alert('Paciente alterado com sucesso')
         setIsChange(!isChange)
+        setCondicao('')
     }
 
 

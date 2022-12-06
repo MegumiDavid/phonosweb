@@ -57,7 +57,7 @@ function Faq() {
               <FontAwesomeIcon className="fa-plus" icon={faPlus} />
               <FontAwesomeIcon className="fa-minus" icon={faMinus} />
             </a>
-            <div class="answer answer--4">
+            <div className="answer answer--4">
               <p>
                 A plataforma opera sob um sistema de inscrição mensal ou anual, com um desconto para inscrições anuais.
               </p>

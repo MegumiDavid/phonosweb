@@ -14,7 +14,7 @@ import {
  
  const Signup = () => {
      
-     const [ setAuth ] = useContext(AuthContext)
+     const [ auth, setAuth ] = useContext(AuthContext)
      const navigate = useNavigate()
      
      const [crfa, setCrfa] = useState('')
@@ -28,11 +28,9 @@ import {
     
         try { 
           // createUser()
-          setCrfa('')
-          setEmail('')
-          setPwd('')
-
-          setAuth({ loged: true, crfa: crfa, email: email ,pwd: pwd })
+          setAuth({ loged: true, crfa: crfa })
+          console.log(auth.loged);
+          console.log(auth.crfa);
           navigate('/dashboard')
         } catch (err) { 
             // if !err?.response alert('No server response')
@@ -51,7 +49,7 @@ import {
                 {/* <p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                     <h1>Crie sua conta, <span className="highlight">Fono</span></h1>
                     <form onSubmit={handleSubmit}>
-                        <div class="inputWrapper">
+                        <div className="inputWrapper">
                             <label htmlFor="crfa">CRFA</label>
                             <input 
                             type="text" 
@@ -62,7 +60,7 @@ import {
                             pattern="[0-9]{5}"
                             />
                         </div>
-                        <div class="inputWrapper">
+                        <div className="inputWrapper">
                             <label htmlFor="email">Email</label>
                             <input 
                             type="email" 
@@ -88,7 +86,7 @@ import {
                                 </i>
                             </button>
                         </div>
-                        <button type="submit" class="btn">Entrar</button>
+                        <button type="submit" className="btn">Entrar</button>
                     </form>        
                     <p>Já possui sua conta? <Link className="ctaLink" to='/login'>Log in</Link></p>    
                 </div>

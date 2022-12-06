@@ -106,6 +106,7 @@ const Patients = () => {
                       lname={p.lname}
                       token={p.token}
                       bday={p.bday}
+                      img={p.img}
                       condition={p.condicao}                    
                     />
                 ))}

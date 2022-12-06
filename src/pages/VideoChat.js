@@ -6,9 +6,9 @@ import Topbar from '../components/Topbar'
 
 function VideoChat() {
   return (
-    <div class="gridWrapper">
+    <div className="gridWrapper">
         <Sidebar />
-        <main class="thisgame">
+        <main className="thisgame">
           <Topbar text={'Video '} hlightedText={'Chamadas'}/>
         </main>
     </div>
