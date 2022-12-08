@@ -1,22 +1,23 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
-import logo from '../images/logo.svg'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+
+import logo from '../images/logo.svg'
 import '../style/Dashboard.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faVideo,
-  faHouse,
-  faGamepad,
-  faArrowRightFromBracket
+    faVideo,faHouse, faGamepad, faArrowRightFromBracket
  } from '@fortawesome/free-solid-svg-icons'
+
+ import { useDispatch } from 'react-redux'
+ import { logoutSetter } from '../actions'
 
 const Sidebar = () => {
   const navigate = useNavigate()
-  const [ auth, setAuth ] = useContext(AuthContext)
+  const dispatch = useDispatch()
+  
   const logOut = () => {
-    setAuth(false)
-    localStorage.setItem("auth", JSON.stringify(auth))
+    dispatch(logoutSetter())
+    localStorage.setItem("auth", JSON.stringify(false))
     navigate('/')
   }
 

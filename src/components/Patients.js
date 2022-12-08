@@ -21,24 +21,21 @@ const Patients = () => {
   }
   
   const isMyPatient = (fonos) => {
-    console.log(fonos);
     return fonos.includes("12345")
   }
 
   const getPacientes = async () =>  {
     const response = await fetch(`http://localhost:3000/pacientes`)
     const data = await response.json()
+    let pacientesArray = []
+    
     data.reverse()
-    setPacientes(data)
-
-    /*
-    console.log(data.length);
     data.forEach(p => {
       if (isMyPatient(p.fonos)) {
-        setPacientes([ ...pacientes, p ])
+        pacientesArray.push(p)
       }
     })
-    */
+    setPacientes(pacientesArray)
   } 
 
   const findByName = () => {

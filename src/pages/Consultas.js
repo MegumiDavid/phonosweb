@@ -13,15 +13,41 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 import profileImg from '../images/profile.png'
+import { useEffect } from 'react'
 
 function Consultas() {
   const { isOpen, setIsOpen, setCurrPopup } = useContext(PopupContext)
   const [agendaAtual, setAgendaAtual] = useState(false)
+  const [consultas, setConsultas] = useState([])
+  let agendaArray = []
 
   const handleAddConsulta = () => {
     setCurrPopup('addConsulta')
     setIsOpen(true)
   }
+
+  
+  // console.log(consultas)
+  /* console.log(consultas[0])
+  console.log(consultas[0].data)
+  console.log(consultas[0].hora)
+  console.log(consultas[0].fono)
+  console.log(consultas[0].paciente)
+  console.log('')
+  console.log('') */
+
+  useEffect(async () => {
+    const getConsultas = async () =>  {
+      const response = await fetch(`http://localhost:3000/agendamentos`)
+      const data = await response.json()
+      return data
+    }
+
+    const c = await getConsultas()
+    console.log(c)
+    setConsultas(c)
+    console.log(consultas[0].data);
+  },[])
 
   return (
     <>
@@ -52,12 +78,12 @@ function Consultas() {
                             <div className='comAgenda'>
                               <h3>Consulta Online</h3>
                               <div className="horario">
-                                <p>4 de Agosto de 2022 (Sex)</p>
-                                <p>14:20 ~ 15:20</p>
+                                {/* <p>{consultas[0].data}</p>
+                                <p>{consultas[0].hora}</p> */}
                               </div>
                               <img src={profileImg} alt="profile" className="profile" />
-                              <p className="pacienteName">David Paciente-kyun</p>
-                              <p className="address">Rua David Center, 69 Consultorio 197</p>
+                              <p className="pacienteName">{/* {getPacienteByToken(consultas.paciente)} */}</p>
+                              {/* <p className="address">{consultas[0].endereco}</p> */}
                               <button>Ver no Mapa</button>
                             </div>
                           )

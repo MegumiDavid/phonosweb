@@ -1,6 +1,8 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
+
+import { /* useSelector, */ useDispatch } from 'react-redux'
+import { loginSetter } from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +12,8 @@ import boxImg from '../images/rectangle1.png'
 
 const Login = () => {
 
-  const [ auth, setAuth ] = useContext(AuthContext)
+  const dispatch = useDispatch()
+
   const navigate = useNavigate()
   const crfaRef = useRef()
 
@@ -18,29 +21,21 @@ const Login = () => {
   const [pwd, setPwd] = useState('')
   const [isVisible, setIsVisible] = useState(false)
 
-  useEffect(() => {
-    crfaRef.current.focus()
-  }, [])
-
   const getFonoCrfa = async (crfa) => {
     const response = await fetch(`http://localhost:3000/fonos/${crfa}`)
     const data = await response.json()
     if (data[0].password !== pwd) {
       return false
     }
-    setAuth({ loged: true, crfa: crfa })
-
-    console.log(auth.loged);
-    console.log(auth.crfa);
-
+    dispatch(loginSetter(crfa))
     return true
   }
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (await getFonoCrfa(crfa)) {
-      localStorage.setItem("auth", JSON.stringify(auth))
+      localStorage.setItem("auth", JSON.stringify(true))
       navigate('/dashboard')
     } else {
       alert("Dados errados")

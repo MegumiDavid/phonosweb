@@ -1,15 +1,20 @@
-import { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { AuthContext } from './context/AuthContext'
+import { useSelector } from 'react-redux'
 const PrivateRoutes = () => {
-  const [ auth ] = useContext(AuthContext)
+
+  const logedState = useSelector(state => state.logerReducer).loged
   let checkElement
-  if (localStorage.getItem('auth')) {
-    checkElement = localStorage.getItem('auth')
+  if (!localStorage.getItem('auth')) {
+    checkElement = logedState
   } else {
-    checkElement = auth.loged
+    let lsReturn = localStorage.getItem('auth')
+    if (lsReturn === 'true') {
+      checkElement = true
+    } else {
+      checkElement = false
+    }
   }
-return (
+  return (
     checkElement  ? <Outlet/> : <Navigate to='/login'/>
   )
 }
