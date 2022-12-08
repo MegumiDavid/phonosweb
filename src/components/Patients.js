@@ -1,15 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
-
+import { useSelector } from 'react-redux'
 import PopupContext from '../context/PopupProvider';
 import PatientTr from '../components/PatientTr'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-
 import '../style/Dashboard.scss'
 import profilePic from '../images/profile-ex.png'
 
 const Patients = () => {
+
+  const currCrfa = useSelector(state => state.logerReducer).currCrfa
   const { setIsOpen, setCurrPopup, isChange, setIsChange } = useContext(PopupContext)
   const [pacientes, setPacientes] = useState([])
   const [fnameQuery, setFnameQuery] = useState('')
@@ -21,7 +22,7 @@ const Patients = () => {
   }
   
   const isMyPatient = (fonos) => {
-    return fonos.includes("12345")
+    return fonos.includes(currCrfa)
   }
 
   const getPacientes = async () =>  {
@@ -103,7 +104,7 @@ const Patients = () => {
                       lname={p.lname}
                       token={p.token}
                       bday={p.bday}
-                      img={p.img}
+                      img={p.img === 'assets/avatar_morcego.png'? require(`../images/${p.img}`) : p.img}
                       condition={p.condicao}                    
                     />
                 ))}

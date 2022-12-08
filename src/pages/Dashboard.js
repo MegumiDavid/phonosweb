@@ -1,20 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import PopupContext from '../context/PopupProvider';
+
 import Sidebar from '../components/Sidebar'
 import Patients from '../components/Patients'
 import Topbar from '../components/Topbar'
 import MyProfile from '../components/MyProfile'
 import Popup from '../components/Popup'
 
-import PopupContext from '../context/PopupProvider';
 
 import '../style/Dashboard.scss'
 
 const Dashboard = () => {
+  const currCrfa = useSelector(state => state.logerReducer).currCrfa
   const { isOpen } = useContext(PopupContext)
   const [fonoData, setFonoData] = useState([])
 
   const getMyProfile = async () =>  {
-    const response = await fetch(`http://localhost:3000/fonos/${12345}`)
+    const response = await fetch(`http://localhost:3000/fonos/${currCrfa}`)
     const data = await response.json()
     setFonoData(data[0])
   } 

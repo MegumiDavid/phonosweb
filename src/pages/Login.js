@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { /* useSelector, */ useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { loginSetter } from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +13,6 @@ import boxImg from '../images/rectangle1.png'
 const Login = () => {
 
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
   const crfaRef = useRef()
 
@@ -40,10 +39,6 @@ const Login = () => {
     } else {
       alert("Dados errados")
     }
-      // if !err?.response alert('No server response')
-      // else if err.response?.status === 400 alert('missing crfa or pwd')
-      // else if err.response?.status === 401 alert('unauthorized')
-      // else err.response?.status === 401 alert('login falided')
   }
 
   return (

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import profilePic from '../images/profile-ex.png'
 import PopupContext from '../context/PopupProvider';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,21 +1,24 @@
 import React, { useState, useRef, useEffect  } from 'react'
+import { useSelector } from 'react-redux'
 
-import myProfilePic from '../images/profile.png'
-
+import myProfilePicture from '../images/anonimous-profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
+
 const myProfileData = {
-       'name' : 'Megumi David'
+    'name' : 'Megumi David'
 }
 
 const MyProfile = () => {
-  const [inputValue, setInputValue] = useState(myProfileData.name)
-  const [isInput, setIsInput] = useState(false)
-  const [fonoData, setFonoData] = useState([])
+    const [inputValue, setInputValue] = useState(myProfileData.name)
+    const [fonoData, setFonoData] = useState([])
+    // const [isInput, setIsInput] = useState(false)
+
+    const currCrfa = useSelector(state => state.logerReducer).currCrfa
   
   const getMyProfile = async () =>  {
-    const response = await fetch(`http://localhost:3000/fonos/${12345}`)
+    const response = await fetch(`http://localhost:3000/fonos/${currCrfa}`)
     const data = await response.json()
     setFonoData(data[0])
   } 
@@ -41,7 +44,8 @@ const MyProfile = () => {
         <div className="mpbox">
             <div className="imgWrap">
                 <div className="circle">
-                    <img src={fonoData.img} alt="profile" />
+                    {/* <img src={fonoData.img} alt="profile" /> */}
+                    <img src={ myProfilePicture } alt="profile" />
                 </div>
                 <h3 className="name">{`${fonoData.fname} ${fonoData.lname}`}</h3>
             </div>

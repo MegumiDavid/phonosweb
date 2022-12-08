@@ -2,8 +2,8 @@ import React from 'react'
 import '../style/Dashboard.scss'
 import Sidebar from '../components/Sidebar'
 
-import joguinho1 from '../images/joguinhos1.png'
-import joguinho2 from '../images/joguinhos2.png'
+import joguinho1 from '../images/forca.png'
+import joguinho2 from '../images/caçapalavra.png'
 import joguinho3 from '../images/joguinhos3.png'
 
 import Topbar from '../components/Topbar'
@@ -33,9 +33,9 @@ const Joguinhos = () => {
                               </i>
                           </button>
                           </div>
-                        <button className="category">
+                        {/* <button className="category">
                             Categorias
-                        </button>
+                        </button> */}
                     </div>
 
                     <div className="games">

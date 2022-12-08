@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import myProfilePicture from '../images/anonimous-profile.png'
 import PopupContext from '../context/PopupProvider';
+import { useSelector } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-  faXmark,
- } from '@fortawesome/free-solid-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const Popup = () => {
+    const currCrfa = useSelector(state => state.logerReducer).currCrfa
     const { isOpen, setIsOpen, currPopup, currPacienteToken, isChange, setIsChange } = useContext(PopupContext)
     const [paciente, setPaciente] = useState([])
 
@@ -40,7 +40,7 @@ const Popup = () => {
                     condicao: condicao,
                     bday: dataNasc,
                     img: 'https://picsum.photos/200',
-                    fonos: ['12345']
+                    fonos: [currCrfa]
                 })
         };
         const response = await fetch('http://localhost:3000/pacientes/', requestOptions);
@@ -48,6 +48,7 @@ const Popup = () => {
         console.log(data)
         alert('Paciente criado com sucesso')
         setIsChange(!isChange)
+        setIsOpen(false)
         setCondicao('')
         setDataNasc('')
         lnome('')
@@ -143,7 +144,7 @@ const Popup = () => {
                     </div>
                     <div className="imgWrap">
                         <div className="circle">
-                            <img src={myProfilePicture} alt="profile" />
+                            <img src={paciente[0].img === 'assets/avatar_morcego.png'? require(`../images/${paciente[0].img}`) : paciente[0].img} alt="profile" />
                         </div>
                     </div>
                     <form className="info" onSubmit={onEditPacient}>

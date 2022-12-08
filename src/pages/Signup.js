@@ -1,42 +1,61 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
+import { useDispatch } from 'react-redux'
+import { loginSetter } from '../actions'
 
 import '../style/Login.scss'
 import boxImg from '../images/rectangle1.png'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-  faEye,
-  faEyeSlash
- } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
  
  const Signup = () => {
      
-     const [ auth, setAuth ] = useContext(AuthContext)
      const navigate = useNavigate()
+     const dispatch = useDispatch()
      
      const [crfa, setCrfa] = useState('')
      const [email, setEmail] = useState('')
+     const [fname, setFname] = useState('')
+     const [lname, setLname] = useState('')
      const [pwd, setPwd] = useState('')
-     const [errMsg, setErrMsg] = useState('')
      const [isVisible, setIsVisible] = useState(false)
     
+
+    const getFono = async (crfa) => {
+        const response = await fetch(`http://localhost:3000/fonos/${crfa}`)
+        const data = await response.json()
+        return data.length > 0
+    }
+
+    const createFono = async () => {
+        const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    crfa: crfa,
+                    fname: fname,
+                    lname: lname,
+                    email: email,
+                    password: pwd,
+                    img: 'https://picsum.photos/200',
+                    pacientes: []
+                })
+        };
+        await fetch('http://localhost:3000/fonos/', requestOptions);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-    
-        try { 
-          // createUser()
-          setAuth({ loged: true, crfa: crfa })
-          console.log(auth.loged);
-          console.log(auth.crfa);
-          navigate('/dashboard')
-        } catch (err) { 
-            // if !err?.response alert('No server response')
-            // else if err.response?.status === 400 alert('missing crfa or pwd')
-            // else if err.response?.status === 401 alert('unauthorized')
-            // else err.response?.status === 401 alert('login falided')
+        if (await getFono(crfa)) {
+            alert('CRFA ja cadastrado')
+        } else {
+            await createFono()
+            dispatch(loginSetter(crfa))
+            localStorage.setItem("auth", JSON.stringify(true))
+            navigate('/dashboard')
         }
       }
 
@@ -46,7 +65,6 @@ import {
             <span className="line"></span>
             <div className="loginContainer">
                 <div className="box">
-                {/* <p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
                     <h1>Crie sua conta, <span className="highlight">Fono</span></h1>
                     <form onSubmit={handleSubmit}>
                         <div className="inputWrapper">
@@ -58,6 +76,26 @@ import {
                             value={crfa}
                             required
                             pattern="[0-9]{5}"
+                            />
+                        </div>
+                        <div className="inputWrapper">
+                            <label htmlFor="fname">Nome</label>
+                            <input 
+                            type="text" 
+                            id="fname" 
+                            onChange={(e) => {setFname(e.target.value)}}
+                            value={fname}
+                            required
+                            />
+                        </div>
+                        <div className="inputWrapper">
+                            <label htmlFor="lname">Sobrenome</label>
+                            <input 
+                            type="text" 
+                            id="lname" 
+                            onChange={(e) => {setLname(e.target.value)}}
+                            value={lname}
+                            required
                             />
                         </div>
                         <div className="inputWrapper">
