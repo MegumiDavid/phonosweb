@@ -22,6 +22,7 @@ const Patients = () => {
   }
   
   const isMyPatient = (fonos) => {
+    console.log(currCrfa)
     return fonos.includes(currCrfa)
   }
 

@@ -5,6 +5,13 @@ export const loginSetter = (currCrfa) => {
     }
 }
 
+export const getConsultas = (currCrfa) => {
+    return {
+        type: 'getConsultas',
+        payload: currCrfa
+    }
+}
+
 export const logoutSetter = () => {
     return {
         type: 'logoutSetter'

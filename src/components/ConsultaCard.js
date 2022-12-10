@@ -7,21 +7,37 @@ import {
  } from '@fortawesome/free-solid-svg-icons'
 
 
-const ConsultaCard = () => {
-
+const ConsultaCard = ({ data, hora, tipo, status, paciente, endereco }) => {
   const { setIsOpen, setCurrPopup } = useContext(PopupContext)  
   function aaaa () {
     setCurrPopup('editConsulta')
     setIsOpen(true)
   }
-  
+
+  function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+  const today = formatDate()
+  const consSts = today > new Date(data)
+  console.log(today)
+  console.log(consSts)
 
   return (
     <div className="consultaCard">
         <div className="topWrap">
             <div className="horario">
-                <p>4 de Agosto de 2022 (Sex)</p>
-                <p>14:20 ~ 15:20</p>
+                <p>{data}</p>
+                <p>{hora}</p>
             </div>
             <button className="editBtn" onClick={ aaaa }>
               <i>
@@ -30,8 +46,10 @@ const ConsultaCard = () => {
             </button>
         </div>
         <div className="bottomWrap">
-            <p className="tipoConsulta">Presencial</p>
-            <p className="statusConsulta agendado">Agendado</p>
+            <p className="tipoConsulta" style={{textTransform: 'capitalize'}}>{tipo}</p>
+            <p className="statusConsulta agendado" style={{textTransform: 'capitalize'}}>
+              { consSts ? "Agendado" : "Terminado" }
+            </p>
             {/* <p className="statusConsulta finalizado">Finalizado</p> */}
             {/* <p className="statusConsulta cancelado">Cancelado</p> */}
         </div>

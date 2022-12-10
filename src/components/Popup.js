@@ -16,6 +16,9 @@ const Popup = () => {
     const [lnome, setLnome] = useState('')
     const [dataNasc, setDataNasc] = useState('')
     const [condicao, setCondicao] = useState('')
+    const [consPaciente, setConsPaciente] = useState('')
+    const [consData, setConsData] = useState('')
+    const [consHora, setConsHora] = useState('')
 
     const getPacientes = async () =>  {
         const response = await fetch(`http://localhost:3000/pacientes/${currPacienteToken}`)
@@ -126,7 +129,7 @@ const Popup = () => {
                         </div>
                         <div className="btnSection">
                             <button type="submit" className="submitPacient">
-                                Criar
+                                Salvar
                             </button>
                         </div>
                     </form>
@@ -185,26 +188,26 @@ const Popup = () => {
                                 <i> <FontAwesomeIcon icon={faXmark} /> </i>
                             </button>
                     </div>
-                    <h3>Novo agendamento</h3>            
+                    <h3>Editar agendamento</h3>            
                     <form className="info">
 
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Paciente</p>
-                                <input type="text" className="input" id="iconified" />
+                                <input type="text" className="input" id="iconified" onChange={(e) => setConsPaciente(e.target.value)}/>
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
-                                <p className="label">Data agendamento</p>
-                                <input type="date" className="input" id="iconified" />
+                                <p className="label">Nova data</p>
+                                <input type="date" className="input" id="iconified" onChange={(e) => setConsData(e.target.value)}/>
                             </div>
                         </div>
                         
                         <div className="data">
                             <div className="wrap">
-                                <p className="label">Principal defiencia</p>
-                                <input type="text" className="input" id="iconified" />
+                                <p className="label">Nova Horario</p>
+                                <input type="text" className="input" id="iconified" onChange={(e) => setConsHora(e.target.value)}/>
                             </div>
                         </div>
 

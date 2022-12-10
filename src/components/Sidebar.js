@@ -17,7 +17,7 @@ const Sidebar = () => {
   
   const logOut = () => {
     dispatch(logoutSetter())
-    localStorage.setItem("auth", JSON.stringify(false))
+    localStorage.setItem("auth", JSON.stringify({ loged: false, currCrfa: '' }))
     navigate('/')
   }
 

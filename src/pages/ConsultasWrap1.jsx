@@ -1,15 +1,15 @@
 import React from 'react'
 import { PopupProvider } from '../context/PopupProvider';
-import Consultas from './Consultas'
+import Consultas1 from './Consultas1'
 
 import '../style/Dashboard.scss'
 
-const ConsultasWrap = () => {
+const ConsultasWrap1 = () => {
   return (
     <PopupProvider>
-      <Consultas />
+      <Consultas1 />
     </PopupProvider>
   )
 }
 
-export default ConsultasWrap
+export default ConsultasWrap1

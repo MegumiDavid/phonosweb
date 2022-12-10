@@ -54,7 +54,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
         } else {
             await createFono()
             dispatch(loginSetter(crfa))
-            localStorage.setItem("auth", JSON.stringify(true))
+            localStorage.setItem("auth", JSON.stringify({ loged: true, currCrfa: crfa }))
             navigate('/dashboard')
         }
       }

@@ -16,8 +16,10 @@ const Login = () => {
   const navigate = useNavigate()
   const crfaRef = useRef()
 
-  const [crfa, setCrfa] = useState('')
-  const [pwd, setPwd] = useState('')
+  /* const [crfa, setCrfa] = useState('')
+  const [pwd, setPwd] = useState('') */
+  const [crfa, setCrfa] = useState('12345')
+  const [pwd, setPwd] = useState('bananadavid.2003')
   const [isVisible, setIsVisible] = useState(false)
 
   const getFonoCrfa = async (crfa) => {
@@ -34,7 +36,7 @@ const Login = () => {
     e.preventDefault()
 
     if (await getFonoCrfa(crfa)) {
-      localStorage.setItem("auth", JSON.stringify(true))
+      localStorage.setItem("auth", JSON.stringify({loged: true, currCrfa: crfa}))
       navigate('/dashboard')
     } else {
       alert("Dados errados")

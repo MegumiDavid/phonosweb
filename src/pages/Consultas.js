@@ -1,53 +1,41 @@
-  import React, { useState, useContext } from 'react'
-
-import '../style/Dashboard.scss'
+import React, { useState, useContext, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import PopupContext from '../context/PopupProvider'
 
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import Popup from '../components/Popup'
 import ConsultaCard from '../components/ConsultaCard'
-
-import PopupContext from '../context/PopupProvider'
-
+  
+import '../style/Dashboard.scss'
+import profileImg from '../images/profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
-import profileImg from '../images/profile.png'
-import { useEffect } from 'react'
+const Consultas = () => {
 
-function Consultas() {
+  const currCrfa = useSelector(state => state.logerReducer).currCrfa
   const { isOpen, setIsOpen, setCurrPopup } = useContext(PopupContext)
   const [agendaAtual, setAgendaAtual] = useState(false)
-  const [consultas, setConsultas] = useState([])
-  let agendaArray = []
+  const [isChange, setIsChange] = useState(false)
+  const [allConsultas, setAllConsultas] = useState([])
 
   const handleAddConsulta = () => {
-    setCurrPopup('addConsulta')
-    setIsOpen(true)
+    return 
   }
 
-  
-  // console.log(consultas)
-  /* console.log(consultas[0])
-  console.log(consultas[0].data)
-  console.log(consultas[0].hora)
-  console.log(consultas[0].fono)
-  console.log(consultas[0].paciente)
-  console.log('')
-  console.log('') */
+  useEffect(() => {
+    axios
+		  .get(`http://localhost:3000/pacientes`)
+		  .then(data => {
+        setAllConsultas(data)
+    })
+    .catch(err => console.log(err))
 
-  useEffect(async () => {
-    const getConsultas = async () =>  {
-      const response = await fetch(`http://localhost:3000/agendamentos`)
-      const data = await response.json()
-      return data
-    }
+    console.log(allConsultas)
+  }, [])
 
-    const c = await getConsultas()
-    console.log(c)
-    setConsultas(c)
-    console.log(consultas[0].data);
-  },[])
 
   return (
     <>
@@ -78,12 +66,10 @@ function Consultas() {
                             <div className='comAgenda'>
                               <h3>Consulta Online</h3>
                               <div className="horario">
-                                {/* <p>{consultas[0].data}</p>
-                                <p>{consultas[0].hora}</p> */}
+                                 
                               </div>
-                              <img src={profileImg} alt="profile" className="profile" />
-                              <p className="pacienteName">{/* {getPacienteByToken(consultas.paciente)} */}</p>
-                              {/* <p className="address">{consultas[0].endereco}</p> */}
+                              <img src={ profileImg } alt="profile" className="profile" />
+                              <p className="pacienteName"></p>
                               <button>Ver no Mapa</button>
                             </div>
                           )
