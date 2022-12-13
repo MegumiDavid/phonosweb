@@ -15,8 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const Consultas1 = () => {
-  // const currCrfa = useSelector(state => state.logerReducer).currCrfa
-  const currCrfa = '12345'
+  const accessToken = useSelector(state => state.logerReducer).accessToken
+  const currCrfa = useSelector(state => state.crfaReducer).currCrfa
   const { isOpen, setIsOpen, setCurrPopup } = useContext(PopupContext)
   const [consultas, setConsultas] = useState([])
   const [isChange, setIsChange] = useState(false)
@@ -29,40 +29,43 @@ const Consultas1 = () => {
 
   const handleAddConsulta = async (e) => {
     e.preventDefault()
-    console.log(dataCons)
     const requestOptions = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({ 
                 data: dataCons,
                 hora: hora,
-                paciente: paciente,
                 fono: currCrfa,
+                paciente: paciente,
                 tipo: tipo,
-                status: 'agendado',
                 endereco: endereco
             })
     };
-    const response = await fetch('http://localhost:3000/agendamentos/', requestOptions);
-    // const data = await response.json();
+    await fetch('http://localhost:3000/agendamentos/', requestOptions);
     setIsChange(!isChange)
     alert('Consulta criado com sucesso')
+    setData('');setHora('');setPaciente('');setTipo('');setEndereco('zoom.com')
+  }
 
-    setData('')
-    setHora('')
-    setPaciente('')
-    setTipo('')
-    setEndereco('zoom.com')
+  const getConsultas = async () => {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+      },
+    };
+    const response = await fetch(`http://localhost:3000/agendamentos/`, requestOptions )
+    const data = await response.json()
+    setConsultas(data.reverse())
+    console.log(data);    
   }
 
   useEffect(() => {
-		axios.get(`http://localhost:3000/agendamentos/${currCrfa}`)
-		.then(data => {
-			setConsultas(data.data.reverse())
-		})
-		.catch(err => console.log(err))
+    getConsultas()
   },[isChange])
 
   return (

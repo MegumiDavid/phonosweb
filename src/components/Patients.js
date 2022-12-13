@@ -10,7 +10,8 @@ import profilePic from '../images/profile-ex.png'
 
 const Patients = () => {
 
-  const currCrfa = useSelector(state => state.logerReducer).currCrfa
+  const accessToken = useSelector(state => state.logerReducer).accessToken
+  const currCrfa = useSelector(state => state.crfaReducer).currCrfa
   const { setIsOpen, setCurrPopup, isChange, setIsChange } = useContext(PopupContext)
   const [pacientes, setPacientes] = useState([])
   const [fnameQuery, setFnameQuery] = useState('')
@@ -22,12 +23,18 @@ const Patients = () => {
   }
   
   const isMyPatient = (fonos) => {
-    console.log(currCrfa)
     return fonos.includes(currCrfa)
   }
 
-  const getPacientes = async () =>  {
-    const response = await fetch(`http://localhost:3000/pacientes`)
+  const getPacientes  = async () =>  {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+      },
+    }
+    const response = await fetch(`http://localhost:3000/pacientes`, requestOptions)
     const data = await response.json()
     let pacientesArray = []
     
@@ -54,14 +61,6 @@ const Patients = () => {
       setQueryChange(true)
     }
   }
-
-  /* const handleSearch = async (e) => {
-    setFnameQuery(e.target.value)
-    if (fnameQuery === '') {
-      getPacientes()
-      setIsChange(!isChange)
-    }
-  } */
 
   useEffect(() => {
     getPacientes()

@@ -1,13 +1,13 @@
-export const loginSetter = (currCrfa) => {
+export const loginSetter = (accessToken) => {
     return {
         type: 'loginSetter',
-        payload: currCrfa
+        payload: accessToken
     }
 }
 
-export const getConsultas = (currCrfa) => {
+export const crfaLogin = (currCrfa) => {
     return {
-        type: 'getConsultas',
+        type: 'crfaLogin',
         payload: currCrfa
     }
 }
@@ -17,3 +17,9 @@ export const logoutSetter = () => {
         type: 'logoutSetter'
     }
 }
+
+/* export const tokenSetter = () => {
+    return {
+        type: 'tokenSetter'
+    }
+} */

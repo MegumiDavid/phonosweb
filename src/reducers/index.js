@@ -1,11 +1,11 @@
 import logerReducer from './logerReducer'
-import consultasReducer from './consultasReducer'
+import crfaReducer from './crfaReducer'
 
 import { combineReducers } from 'redux'
 
 const allReducer = combineReducers({
     logerReducer: logerReducer,
-    consultasReducer: consultasReducer
+    crfaReducer: crfaReducer
 })
 
 export default allReducer

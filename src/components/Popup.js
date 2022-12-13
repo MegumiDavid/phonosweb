@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const Popup = () => {
-    const currCrfa = useSelector(state => state.logerReducer).currCrfa
+    const accessToken = useSelector(state => state.logerReducer).accessToken
+    const currCrfa = useSelector(state => state.crfaReducer).currCrfa
     const { isOpen, setIsOpen, currPopup, currPacienteToken, isChange, setIsChange } = useContext(PopupContext)
-    const [paciente, setPaciente] = useState([])
+    const [paciente, setPaciente] = useState({})
 
     // Add patient inputs
     const [fnome, setFnome] = useState('')
@@ -21,9 +22,19 @@ const Popup = () => {
     const [consHora, setConsHora] = useState('')
 
     const getPacientes = async () =>  {
-        const response = await fetch(`http://localhost:3000/pacientes/${currPacienteToken}`)
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+          }
+        const response = await fetch(`http://localhost:3000/pacientes/${currPacienteToken}`, requestOptions)
         const data = await response.json()
         setPaciente(data)
+        console.log(currPacienteToken);
+        console.log(data);
+        console.log(paciente);
     } 
 
     useEffect(() => {
@@ -37,6 +48,10 @@ const Popup = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
                 body: JSON.stringify({ 
                     fname: fnome,
                     lname: lnome,
@@ -46,6 +61,7 @@ const Popup = () => {
                     fonos: [currCrfa]
                 })
         };
+
         const response = await fetch('http://localhost:3000/pacientes/', requestOptions);
         const data = await response.json();
         console.log(data)
@@ -63,17 +79,18 @@ const Popup = () => {
         const requestOptions = {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({ 
-                token: paciente[0].token,
-                fname: paciente[0].fname,
-                lname: paciente[0].lname,
-                bday: paciente[0].bday,
-                img: paciente[0].img,
-                fonos: paciente[0].fonos,
-                password: paciente[0].password,
-                firstLogin: paciente[0].firstLogin,
+                token: paciente.token,
+                fname: paciente.fname,
+                lname: paciente.lname,
+                bday: paciente.bday,
+                img: paciente.img,
+                fonos: paciente.fonos,
+                password: paciente.password,
+                firstLogin: paciente.firstLogin,
                 condicao: condicao
             })
         };
@@ -147,22 +164,22 @@ const Popup = () => {
                     </div>
                     <div className="imgWrap">
                         <div className="circle">
-                            <img src={paciente[0].img === 'assets/avatar_morcego.png'? require(`../images/${paciente[0].img}`) : paciente[0].img} alt="profile" />
+                            <img src={paciente?.img === 'assets/avatar_morcego.png'? require(`../images/${paciente?.img}`) : paciente?.img} alt="profile" />
                         </div>
                     </div>
                     <form className="info" onSubmit={onEditPacient}>
 
                         <div className="data showData">
                                 <p className="label">Nome</p>
-                                <p className="inputShow">{`${paciente[0].fname} ${paciente[0].lname}`}</p>
+                                <p className="inputShow">{`${paciente?.fname} ${paciente?.lname}`}</p>
                         </div>
                         <div className="data showData">
                                 <p className="label">Token</p>
-                                <p className="inputShow">{paciente[0].token}</p>
+                                <p className="inputShow">{paciente?.token}</p>
                         </div>
                         <div className="data showData">
                                 <p className="label">Data Nasc</p>
-                                <p className="inputShow">{paciente[0].bday}</p>
+                                <p className="inputShow">{paciente?.bday}</p>
                         </div>
                         <div className="data">
                             <div className="wrap">

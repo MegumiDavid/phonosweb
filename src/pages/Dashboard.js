@@ -8,25 +8,26 @@ import Topbar from '../components/Topbar'
 import MyProfile from '../components/MyProfile'
 import Popup from '../components/Popup'
 
-import { useDispatch } from 'react-redux'
-import { loginSetter } from '../actions/index'
-
 import '../style/Dashboard.scss'
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
-  let lsReturn = JSON.parse(localStorage.getItem('auth'))
-  // dispatch(loginSetter(lsReturn.currCrfa))
 
-  const currCrfa = useSelector(state => state.logerReducer).currCrfa
+  const accessToken = useSelector(state => state.logerReducer).accessToken
+  const currCrfa = useSelector(state => state.crfaReducer).currCrfa
   const { isOpen } = useContext(PopupContext)
   const [fonoData, setFonoData] = useState([])
 
   const getMyProfile = async () =>  {
-    const response = await fetch(`http://localhost:3000/fonos/${currCrfa}`)
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+      },
+    }
+    const response = await fetch(`http://localhost:3000/fonos/${currCrfa}`, requestOptions )
     const data = await response.json()
-    // console.log(data)
-    setFonoData(data[0])
+    setFonoData(data)
   } 
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Dashboard = () => {
                 <Topbar text={'Bem vindo(a), '} hlightedText={`${fonoData.fname} ${fonoData.lname}`}/>
                 <section className="infos">
                     <Patients />
-                    <MyProfile />
+                    <MyProfile fonoData={fonoData}/>
                 </section>
             </main>
         </div>

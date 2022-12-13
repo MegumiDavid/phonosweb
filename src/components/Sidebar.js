@@ -45,7 +45,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className='navitem'>
-                    <Link to="/consultas" className="navlink">
+                    <Link to="/consultas1" className="navlink">
                         <i>
                             <FontAwesomeIcon icon={faVideo} />
                         </i>

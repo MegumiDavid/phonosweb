@@ -29,8 +29,6 @@ const ConsultaCard = ({ data, hora, tipo, status, paciente, endereco }) => {
 }
   const today = formatDate()
   const consSts = today > new Date(data)
-  console.log(today)
-  console.log(consSts)
 
   return (
     <div className="consultaCard">

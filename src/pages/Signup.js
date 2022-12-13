@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { loginSetter } from '../actions'
+import { loginSetter, crfaLogin } from '../actions'
+import axios from 'axios'
 
 import '../style/Login.scss'
 import boxImg from '../images/rectangle1.png'
@@ -20,12 +21,23 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
      const [lname, setLname] = useState('')
      const [pwd, setPwd] = useState('')
      const [isVisible, setIsVisible] = useState(false)
-    
 
-    const getFono = async (crfa) => {
-        const response = await fetch(`http://localhost:3000/fonos/${crfa}`)
-        const data = await response.json()
-        return data.length > 0
+    const authFono = async () => {
+        const response = await axios.post('http://localhost:3000/authfono/login/',
+            JSON.stringify({ 
+                email: email,
+                password: pwd
+            }),
+            {
+                headers: { 'Content-Type' : 'application/json' },
+            }
+        )
+        dispatch(loginSetter(response?.data?.access_token))
+        dispatch(crfaLogin(crfa))
+        localStorage.setItem("auth", JSON.stringify({
+            loged: true, accessToken: response?.data?.access_token, currCrfa: crfa
+        }))
+        navigate('/dashboard')
     }
 
     const createFono = async () => {
@@ -49,15 +61,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (await getFono(crfa)) {
-            alert('CRFA ja cadastrado')
-        } else {
-            await createFono()
-            dispatch(loginSetter(crfa))
-            localStorage.setItem("auth", JSON.stringify({ loged: true, currCrfa: crfa }))
-            navigate('/dashboard')
-        }
-      }
+        createFono()
+        authFono()
+        navigate('/dashboard')
+    }
 
     return (
         <div className="body">
@@ -70,12 +77,12 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
                         <div className="inputWrapper">
                             <label htmlFor="crfa">CRFA</label>
                             <input 
-                            type="text" 
-                            id="crfa" 
-                            onChange={(e) => {setCrfa(e.target.value)}}
-                            value={crfa}
-                            required
-                            pattern="[0-9]{5}"
+                                type="text" 
+                                id="crfa" 
+                                onChange={(e) => {setCrfa(e.target.value)}}
+                                value={crfa}
+                                required
+                                pattern="[0-9]{5}"
                             />
                         </div>
                         <div className="inputWrapper">
@@ -124,14 +131,14 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
                                 </i>
                             </button>
                         </div>
-                        <button type="submit" className="btn">Entrar</button>
+                        <button type="submit" className="btn">Criar</button>
                     </form>        
                     <p>Já possui sua conta? <Link className="ctaLink" to='/login'>Log in</Link></p>    
                 </div>
             </div>
             <img src={boxImg} alt="rectangle" className="bodyBox2"/>
         </div>
-  )
+    )
 }
 
 export default Signup

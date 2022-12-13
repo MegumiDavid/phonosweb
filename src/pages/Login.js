@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import { useDispatch } from 'react-redux'
-import { loginSetter } from '../actions'
+import { loginSetter, crfaLogin } from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -14,32 +15,61 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const crfaRef = useRef()
 
-  /* const [crfa, setCrfa] = useState('')
-  const [pwd, setPwd] = useState('') */
-  const [crfa, setCrfa] = useState('12345')
+  const [email, setEmail] = useState('david@fono.com')
   const [pwd, setPwd] = useState('bananadavid.2003')
   const [isVisible, setIsVisible] = useState(false)
+ 
+  const getFonoByEmail = async (accessToken) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+      },
+    };
 
-  const getFonoCrfa = async (crfa) => {
-    const response = await fetch(`http://localhost:3000/fonos/${crfa}`)
+    const response = await fetch(`http://localhost:3000/fonos/`, requestOptions )
     const data = await response.json()
-    if (data[0].password !== pwd) {
-      return false
-    }
-    dispatch(loginSetter(crfa))
-    return true
+    let crfa
+    data.forEach(f => {
+      if (f.email === email) {
+        crfa = f.crfa
+      }
+    })
+    return crfa
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (await getFonoCrfa(crfa)) {
-      localStorage.setItem("auth", JSON.stringify({loged: true, currCrfa: crfa}))
+    try {
+      const response = await axios.post('http://localhost:3000/authfono/login/',
+          JSON.stringify({ 
+            email: email,
+            password: pwd
+          }),
+          {
+              headers: { 'Content-Type': 'application/json' },
+          }
+      );
+
+      const accessToken = response?.data?.access_token;
+      const currCrfa = await getFonoByEmail(accessToken)
+      dispatch(loginSetter(accessToken))
+      dispatch(crfaLogin(currCrfa))
+      localStorage.setItem("auth", JSON.stringify({loged: true, accessToken: accessToken, currCrfa: currCrfa}))
       navigate('/dashboard')
-    } else {
-      alert("Dados errados")
+    } catch (err) {
+      if (!err?.response) {
+        alert('Sem resposta do servidor');
+      } else if (err.response?.status === 400) {
+        alert('Faltando dados');
+      } else if (err.response?.status === 401) {
+        alert('Não Autorizado');
+      } else {
+          alert('Falha Login');
+      }
     }
   }
 
@@ -52,14 +82,13 @@ const Login = () => {
                 <h1>Faça seu Login, <span className="highlight">Fono</span></h1>
                 <form onSubmit={handleSubmit}>
                     <div className="inputWrapper">
-                        <label htmlFor="crfa">CRFA</label>
+                        <label htmlFor="email">Email</label>
                         <input 
-                          type="text" 
-                          id="crfa" 
-                          ref={crfaRef}
+                          type="email" 
+                          id="email" 
                           autoComplete="off"
-                          onChange={(e) => {setCrfa(e.target.value)}}
-                          value={crfa}
+                          onChange={(e) => {setEmail(e.target.value)}}
+                          value={email}
                           required
                         />
                     </div>

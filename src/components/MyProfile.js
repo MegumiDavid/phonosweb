@@ -1,42 +1,7 @@
-import React, { useState, useRef, useEffect  } from 'react'
-import { useSelector } from 'react-redux'
-
+import React from 'react'
 import myProfilePicture from '../images/anonimous-profile.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 
-
-const myProfileData = {
-    'name' : 'Megumi David'
-}
-
-const MyProfile = () => {
-    const [inputValue, setInputValue] = useState(myProfileData.name)
-    const [fonoData, setFonoData] = useState([])
-    // const [isInput, setIsInput] = useState(false)
-
-    const currCrfa = useSelector(state => state.logerReducer).currCrfa
-  
-  const getMyProfile = async () =>  {
-    const response = await fetch(`http://localhost:3000/fonos/${currCrfa}`)
-    const data = await response.json()
-    setFonoData(data[0])
-  } 
-
-  useEffect(() => {
-    getMyProfile()
-  }, [])
-
-  const inputElement = useRef();
-
-  const focusInput = () => {
-    inputElement.current.focus();
-  };
-
-  const handleClick = () => {
-    myProfileData.name = inputValue
-    focusInput()
-  }
+const MyProfile = ({ fonoData }) => {
 
   return (
     <div className="myprofile">
@@ -50,37 +15,6 @@ const MyProfile = () => {
                 <h3 className="name">{`${fonoData.fname} ${fonoData.lname}`}</h3>
             </div>
             <div className="info">
-                {/* <div className="data">
-                    <p className="label">Nome</p>
-                    <div className="wrap">
-                        {
-                            isInput ? (
-                                <form>
-                                    <input value={inputValue} ref={inputElement}
-                                           onChange={(e) => setInputValue(e.target.value)}
-                                    />
-                                    <button type='submit' 
-                                        onClick={() => setIsInput(false)}>
-                                        <i>
-                                            <FontAwesomeIcon 
-                                                icon={faFloppyDisk} 
-                                                onClick={handleClick}
-                                            />
-                                        </i>
-                                    </button>
-                                </form>
-                                ) : 
-                                (
-                                <>
-                                    <p className="input">{inputValue}</p> 
-                                    <i onClick={() => setIsInput(true)}>
-                                        <FontAwesomeIcon icon={faPenToSquare} />
-                                    </i>
-                                </>
-                            )
-                        }
-                    </div>
-                </div> */}
                 <div className="data">
                     <p className="label">Nome</p>
                     <div className="wrap">
@@ -94,18 +28,12 @@ const MyProfile = () => {
                     <p className="label">CRFA</p>
                     <div className="wrap">
                         <p className="input">{fonoData.crfa}</p>
-                        <i>
-                            {/* <FontAwesomeIcon icon={faPenToSquare} /> */}
-                        </i>
                     </div>
                 </div>
                 <div className="data">
                     <p className="label">Email</p>
                     <div className="wrap">
                         <p className="input">{fonoData.email}</p>
-                        <i>
-                            {/* <FontAwesomeIcon icon={faPenToSquare} /> */}
-                        </i>
                     </div>
                 </div>
             </div>
