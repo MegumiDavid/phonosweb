@@ -21,10 +21,6 @@ const Patients = () => {
     setCurrPopup('addPatient')
     setIsOpen(true)
   }
-  
-  const isMyPatient = (fonos) => {
-    return fonos.includes(currCrfa)
-  }
 
   const getPacientes  = async () =>  {
     const requestOptions = {
@@ -34,17 +30,10 @@ const Patients = () => {
           'Authorization': `Bearer ${accessToken}`
       },
     }
-    const response = await fetch(`http://localhost:3000/pacientes`, requestOptions)
+    const response = await fetch(`http://localhost:3000/pacientes/filter/${currCrfa}`, requestOptions)
     const data = await response.json()
-    let pacientesArray = []
-    
     data.reverse()
-    data.forEach(p => {
-      if (isMyPatient(p.fonos)) {
-        pacientesArray.push(p)
-      }
-    })
-    setPacientes(pacientesArray)
+    setPacientes(data)
   } 
 
   const findByName = () => {
