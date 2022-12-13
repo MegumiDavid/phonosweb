@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Game = ({ img, title, desc, id }) => {
+const Game = ({ img, title, desc, link }) => {
   return (
     <div className="game">
         <div className="imgBox">
@@ -11,9 +11,9 @@ const Game = ({ img, title, desc, id }) => {
         <div className="text">
             <h2 className="h2">{title}</h2>
             <p className="p">{desc}</p>
-            <Link to={`/joguinhos/${id}`} className="btnPlay">
-                Jogar
-            </Link>
+            <a href={link} target="_blank" className='btnPlay'>
+              Jogar
+            </a>
         </div>
     </div>
   )

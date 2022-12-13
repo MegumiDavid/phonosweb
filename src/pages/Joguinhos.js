@@ -24,7 +24,7 @@ const Joguinhos = () => {
             </div>
 
             <section className="gameSection">
-                    <div className="form">
+                    {/* <div className="form">
                         <div className="inputWrapper">
                             <input type="text" className="input" id="iconified" placeholder="procurar joguinhos"/>
                             <button className="btnSubmit">
@@ -33,26 +33,29 @@ const Joguinhos = () => {
                               </i>
                           </button>
                           </div>
-                        {/* <button className="category">
+                        <button className="category">
                             Categorias
-                        </button> */}
-                    </div>
+                        </button>
+                    </div> */}
 
                     <div className="games">
                         <Game 
                             id={1}
+                            link="http://localhost:8000/"
                             img={joguinho1}
                             title={'Jogo da Forca'}
                             desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
                         />
                         <Game 
                             id={2}
+                            link="http://localhost:8000/"
                             img={joguinho2}
                             title={'Caça Palavra'}
                             desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}
                         />
                         <Game 
                             id={3}
+                            link="http://localhost:8000/"
                             img={joguinho3}
                             title={'Jogo da Memoria'}
                             desc={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."}

@@ -19,13 +19,15 @@ const Consultas1 = () => {
   const currCrfa = useSelector(state => state.crfaReducer).currCrfa
   const { isOpen, setIsOpen, setCurrPopup } = useContext(PopupContext)
   const [consultas, setConsultas] = useState([])
+  const [consultasPassados, setConsultasPassados] = useState([])
+  const [consultasFuturos, setConsultasFuturos] = useState([])
   const [isChange, setIsChange] = useState(false)
 
   const [dataCons, setData] = useState('')
   const [hora, setHora] = useState('')
   const [paciente, setPaciente] = useState('')
   const [tipo, setTipo] = useState('')
-  const [endereco, setEndereco] = useState('zoom.com')
+  const [endereco, setEndereco] = useState('')
 
   const handleAddConsulta = async (e) => {
     e.preventDefault()
@@ -41,7 +43,7 @@ const Consultas1 = () => {
                 fono: currCrfa,
                 paciente: paciente,
                 tipo: tipo,
-                endereco: endereco
+                endereco: [endereco]
             })
     };
     await fetch('http://localhost:3000/agendamentos/', requestOptions);
@@ -50,7 +52,7 @@ const Consultas1 = () => {
     setData('');setHora('');setPaciente('');setTipo('');setEndereco('zoom.com')
   }
 
-  const getConsultas = async () => {
+  const getConsultasPassados = async () => {
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -58,14 +60,27 @@ const Consultas1 = () => {
           'Authorization': `Bearer ${accessToken}`
       },
     };
-    const response = await fetch(`http://localhost:3000/agendamentos/`, requestOptions )
+    const response = await fetch(`http://localhost:3000/agendamentos/passados/${currCrfa}`, requestOptions )
     const data = await response.json()
-    setConsultas(data.reverse())
-    console.log(data);    
+    setConsultasPassados(data)
+  }
+
+  const getConsultasFuturos = async () => {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+      },
+    };
+    const response = await fetch(`http://localhost:3000/agendamentos/futuros/${currCrfa}`, requestOptions )
+    const data = await response.json()
+    setConsultasFuturos(data)
   }
 
   useEffect(() => {
-    getConsultas()
+    getConsultasFuturos()
+    getConsultasPassados()
   },[isChange])
 
   return (
@@ -80,22 +95,20 @@ const Consultas1 = () => {
                     <h1 className="h1">Agendamento Proximo</h1>
                     <div className="consultaBox">
                       {
-                        consultas[0] ?
+                        consultasFuturos[0] ?
                         (
                           <div className='comAgenda'>
-                          <h3>Consulta {consultas[0].tipo}</h3>
+                          <h3>Consulta {consultasFuturos[0].tipo}</h3>
                           <div className="horario">
-                            <p>{ consultas[0]? `${consultas[0].data} ${consultas[0].hora}`: ''}</p>
+                            <p>{ consultasFuturos[0]? `${consultasFuturos[0].data} ${consultasFuturos[0].hora}`: ''}</p>
                           </div>
                           <img src={ myProfilePicture } alt="profile" className="profile" />
-                          <p className="pacienteName">
-                            {/* {paciente ? `${paciente.fname} ${paciente.lname}` : ''} */}
-                          </p>
+                          <p className="pacienteName"></p>
                           {
-                            (consultas[0].tipo === 'presencial') ?
+                            (consultasFuturos[0].tipo === 'presencial') ?
                             (
                               <>
-                                <p className="address">{ consultas[0] && `${consultas[0].endereco}`}</p>
+                                <p className="address">{ consultasFuturos[0] && `${consultasFuturos[0].endereco[0]}`}</p>
                               </>
                             )
                             :
@@ -116,12 +129,14 @@ const Consultas1 = () => {
                         )
                       }
                       {
-                        (consultas[0] && consultas[0].tipo === 'online') 
+                        (consultasFuturos[0] && consultasFuturos[0].tipo === 'online') 
                         &&
                         (
-                          <button className="newAgenda" onClick={ handleAddConsulta }>
-                            Ir Para Consulta Online
-                          </button>
+                          <a href="http://localhost:3002/" target="_blank">
+                            <button className="newAgenda">
+                              Ir Para Consulta Online
+                            </button>
+                          </a>
                         ) 
                       }
                     </div>
@@ -129,14 +144,14 @@ const Consultas1 = () => {
                   <div className="futuros">
                     <h1 className="h1">Todos Agendamentos</h1>
                     <div className="futuroBox">
-                      {consultas[0] && consultas.slice(1).map((c) => (
+                      {consultasFuturos[0] && consultasFuturos.slice(1).map((c) => (
                         <ConsultaCard 
                           data={c.data}
                           hora={c.hora}
                           tipo={c.tipo}
                           status={c.status}
                           paciente={c.paciente}
-                          endereco={c.endereco}
+                          endereco={c.endereco[0]}
                         />
                       ))}
                     </div>
