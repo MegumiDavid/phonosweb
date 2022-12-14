@@ -31,6 +31,22 @@ const Consultas1 = () => {
 
   const handleAddConsulta = async (e) => {
     e.preventDefault()
+
+    let endOnline = ''
+    if (tipo === "online") {
+      await axios.post('http://localhost:3005/newmeeting')
+      .then(function (response) {
+        const json = JSON.parse(response.data.substring(23, response.data.length))
+        if (json) {
+          endOnline = json.join_url
+          console.log(endOnline);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
     const requestOptions = {
             method: 'POST',
             headers: {
@@ -42,14 +58,15 @@ const Consultas1 = () => {
                 hora: hora,
                 fono: currCrfa,
                 paciente: paciente,
+                status: 'agendado',
                 tipo: tipo,
-                endereco: [endereco]
+                endereco: [tipo === "online" ? endOnline : endereco]
             })
     };
     await fetch('http://localhost:3000/agendamentos/', requestOptions);
     setIsChange(!isChange)
     alert('Consulta criado com sucesso')
-    setData('');setHora('');setPaciente('');setTipo('');setEndereco('zoom.com')
+    setData('');setHora('');setPaciente('');setTipo('');setEndereco('')
   }
 
   const getConsultasPassados = async () => {
@@ -76,6 +93,23 @@ const Consultas1 = () => {
     const response = await fetch(`http://localhost:3000/agendamentos/futuros/${currCrfa}`, requestOptions )
     const data = await response.json()
     setConsultasFuturos(data)
+  }
+
+  const getMeetingUrl = async () => {
+    let endOnline = ''
+    axios.post('http://localhost:3005/newmeeting')
+    .then(function (response) {
+      const json = JSON.parse(response.data.substring(23, response.data.length))
+      // console.log(json.join_url)
+      // setEndereco(json.join_url)
+      if (json) {
+        endOnline = json.join_url
+        console.log(endOnline);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   useEffect(() => {
@@ -132,17 +166,25 @@ const Consultas1 = () => {
                         (consultasFuturos[0] && consultasFuturos[0].tipo === 'online') 
                         &&
                         (
-                          <a href="http://localhost:3002/" target="_blank">
-                            <button className="newAgenda">
-                              Ir Para Consulta Online
-                            </button>
-                          </a>
+                          <>
+                            <a href={ consultasFuturos[0].endereco[0] } target="_blank">
+                              <button className="newAgenda">
+                                Ir Para Consulta Online
+                              </button>
+                            </a>
+                            
+                              {/* <button className="newAgenda" onClick={getMeetingUrl}>
+                                Meeting Url
+                              </button> */}
+                            
+                          
+                          </>
                         ) 
                       }
                     </div>
                   </div> 
                   <div className="futuros">
-                    <h1 className="h1">Todos Agendamentos</h1>
+                    <h1 className="h1">Todos Agendamentos Fu</h1>
                     <div className="futuroBox">
                       {consultasFuturos[0] && consultasFuturos.slice(1).map((c) => (
                         <ConsultaCard 
@@ -176,14 +218,14 @@ const Consultas1 = () => {
                             <label htmlFor="tipo">Tipo (presencial / online)</label>
                             <input type="text" required id='tipo' onChange={(e) => setTipo(e.target.value)}/>
                           </div>
-                          {/* {tipo === 'presencial' &&
-                            ( */}
+                          {tipo === 'presencial' &&
+                            (
                               <div className="inputwrap">
                                 <label htmlFor="endereco">Endereco</label>
                                 <input type="text" id='endereco' requeried onChange={(e) => setEndereco(e.target.value)}/>
                               </div>
-                            {/* )
-                          } */}
+                            ) 
+                          }
                           <div className="btnWrap">
                             <button type='submit'>
                               Criar Consulta
