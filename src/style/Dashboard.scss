@@ -943,9 +943,10 @@ $font-color: #181945;
     }
     .marcarConsultaBox {
         width: 100%;
-        min-height: 750px;
+        padding: 5rem;
+        min-height: 700px;
+        margin-top: 5rem;
         border-radius: 32px;
-        margin-top: 7rem;
         background: $light-blue;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
         display: flex;
@@ -962,7 +963,7 @@ $font-color: #181945;
         }
 
         button {
-            margin-top: 5rem;
+            margin-top: 25rem;
             text-align: center;
             border: none;
             border-radius: 6px;
@@ -973,12 +974,10 @@ $font-color: #181945;
             transition: all 300ms ease;
 
             position: absolute;
-            bottom: 300px;
 
             font-weight: 600;
             font-size: 1.6rem;
 
-            
             &:focus {outline: none;}
             &:hover {background-color: #449bc0ba;}
         }
@@ -1006,10 +1005,10 @@ $font-color: #181945;
 
     .consultaBox {
         width: 100%;
-        min-height: 750px;
+        min-height: 700px;
+        margin-top: 5rem;
         background-color: #181945;
         border-radius: 32px;
-        margin-top: 7rem;
 
         background: #FFFFFF;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -1019,14 +1018,15 @@ $font-color: #181945;
         align-items: center;
 
         position: relative;
-
-        .semAgenda {
+        a {
+            width: 100%;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: auto;
-            transform: translateY(-50px);
+        }
+        .semAgenda {
+            margin: 0 auto;
+            // transform: translateY(-50px);
         }
 
         .comAgenda {
@@ -1104,12 +1104,12 @@ $font-color: #181945;
     .futuroBox {
         overflow-Y: auto;
         width: 100%;
-        max-height: 750px;
+        max-height: 700px;
         padding-bottom: .5rem;
         padding-right: 1rem;
 
         border-radius: 32px;
-        margin-top: 7rem;
+        margin-top: 5rem;
 
         background: #FFFFFF;
 

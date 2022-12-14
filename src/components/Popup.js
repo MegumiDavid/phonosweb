@@ -123,25 +123,25 @@ const Popup = () => {
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Primeiro Nome</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setFnome(e.target.value)} />
+                                <input type="text" required className="input" id="iconified" onChange={(e) => setFnome(e.target.value)} />
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Ultimo Nome</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setLnome(e.target.value)} />
+                                <input type="text" required  className="input" id="iconified" onChange={(e) => setLnome(e.target.value)} />
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Data nascimento</p>
-                                <input type="date" className="input" id="iconified" onChange={(e) => setDataNasc(e.target.value)}/>
+                                <input type="date" required className="input" id="iconified" onChange={(e) => setDataNasc(e.target.value)}/>
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Condicao</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)}/>
+                                <input type="text" required className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)}/>
                             </div>
                         </div>
                         <div className="btnSection">
@@ -184,7 +184,7 @@ const Popup = () => {
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Condição</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)} />
+                                <input type="text" required className="input" id="iconified" onChange={(e) => setCondicao(e.target.value)} />
                             </div>
                         </div>
                         <div className="btnSection">
@@ -211,20 +211,20 @@ const Popup = () => {
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Paciente</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setConsPaciente(e.target.value)}/>
+                                <input type="text" required className="input" id="iconified" onChange={(e) => setConsPaciente(e.target.value)}/>
                             </div>
                         </div>
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Nova data</p>
-                                <input type="date" className="input" id="iconified" onChange={(e) => setConsData(e.target.value)}/>
+                                <input type="date" required className="input" id="iconified" onChange={(e) => setConsData(e.target.value)}/>
                             </div>
                         </div>
                         
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Nova Horario</p>
-                                <input type="text" className="input" id="iconified" onChange={(e) => setConsHora(e.target.value)}/>
+                                <input type="text" required className="input" id="iconified" onChange={(e) => setConsHora(e.target.value)}/>
                             </div>
                         </div>
 
@@ -268,7 +268,7 @@ const Popup = () => {
                         <div className="data">
                             <div className="wrap">
                                 <p className="label">Principal defiencia</p>
-                                <input type="text" className="input" id="iconified" />
+                                <input type="text" required className="input" id="iconified" />
                             </div>
                         </div>
                         <div className="btnSection">

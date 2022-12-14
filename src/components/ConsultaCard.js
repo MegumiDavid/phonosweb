@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PopupContext from '../context/PopupProvider'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { 
   faPenToSquare,
@@ -14,22 +14,6 @@ const ConsultaCard = ({ data, hora, tipo, status, paciente, endereco }) => {
     setIsOpen(true)
   }
 
-  function formatDate() {
-    var d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-  const today = formatDate()
-  const consSts = today > new Date(data)
-
   return (
     <div className="consultaCard">
         <div className="topWrap">
@@ -37,16 +21,16 @@ const ConsultaCard = ({ data, hora, tipo, status, paciente, endereco }) => {
                 <p>{data}</p>
                 <p>{hora}</p>
             </div>
-            <button className="editBtn" onClick={ aaaa }>
+            {/* <button className="editBtn" onClick={ aaaa }>
               <i>
                   <FontAwesomeIcon icon={faPenToSquare} />
               </i>
-            </button>
+            </button> */}
         </div>
         <div className="bottomWrap">
             <p className="tipoConsulta" style={{textTransform: 'capitalize'}}>{tipo}</p>
             <p className="statusConsulta agendado" style={{textTransform: 'capitalize'}}>
-              { consSts ? "Agendado" : "Terminado" }
+              Agendado
             </p>
             {/* <p className="statusConsulta finalizado">Finalizado</p> */}
             {/* <p className="statusConsulta cancelado">Cancelado</p> */}

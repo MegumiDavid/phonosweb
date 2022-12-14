@@ -162,28 +162,28 @@ const Consultas1 = () => {
                         <form onSubmit={handleAddConsulta}>
                           <div className="inputwrap">
                             <label htmlFor="dataConsulta">Data</label>
-                            <input type="date" id='dataConsulta' onChange={(e) => setData(e.target.value)}/>
+                            <input type="date" required id='dataConsulta' onChange={(e) => setData(e.target.value)}/>
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="hora">Hora</label>
-                            <input type="text" id='hora' onChange={(e) => setHora(e.target.value)}/>
+                            <input type="text" required id='hora' onChange={(e) => setHora(e.target.value)}/>
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="paciente">Paciente</label>
-                            <input type="text" id='paciente' onChange={(e) => setPaciente(e.target.value)}/>
+                            <input type="text" required id='paciente' onChange={(e) => setPaciente(e.target.value)}/>
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="tipo">Tipo (presencial / online)</label>
-                            <input type="text" id='tipo' onChange={(e) => setTipo(e.target.value)}/>
+                            <input type="text" required id='tipo' onChange={(e) => setTipo(e.target.value)}/>
                           </div>
-                          {tipo === 'presencial' &&
-                            (
+                          {/* {tipo === 'presencial' &&
+                            ( */}
                               <div className="inputwrap">
                                 <label htmlFor="endereco">Endereco</label>
-                                <input type="text" id='endereco ' onChange={(e) => setEndereco(e.target.value)}/>
+                                <input type="text" id='endereco' requeried onChange={(e) => setEndereco(e.target.value)}/>
                               </div>
-                            )
-                          }
+                            {/* )
+                          } */}
                           <div className="btnWrap">
                             <button type='submit'>
                               Criar Consulta
