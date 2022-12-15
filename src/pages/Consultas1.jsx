@@ -184,7 +184,7 @@ const Consultas1 = () => {
                     </div>
                   </div> 
                   <div className="futuros">
-                    <h1 className="h1">Todos Agendamentos Fu</h1>
+                    <h1 className="h1">Agendamentos Futuros</h1>
                     <div className="futuroBox">
                       {consultasFuturos[0] && consultasFuturos.slice(1).map((c) => (
                         <ConsultaCard 

@@ -57,7 +57,7 @@ const Popup = () => {
                     lname: lnome,
                     condicao: condicao,
                     bday: dataNasc,
-                    img: 'https://picsum.photos/200',
+                    img: 'assets/avatar_first_login.png',
                     fonos: [currCrfa]
                 })
         };
@@ -70,8 +70,8 @@ const Popup = () => {
         setIsOpen(false)
         setCondicao('')
         setDataNasc('')
-        lnome('')
-        fnome('')
+        setLnome('')
+        setFnome('')
     }   
 
     const onEditPacient = async (e) => {
@@ -164,7 +164,8 @@ const Popup = () => {
                     </div>
                     <div className="imgWrap">
                         <div className="circle">
-                            <img src={paciente?.img === 'assets/avatar_morcego.png'? require(`../images/${paciente?.img}`) : paciente?.img} alt="profile" />
+                            {/* <img src={require(`../images/${paciente?.img}`)} alt="profile" /> */}
+                            <img src={require(`../images/assets/avatar_first_login.png`)} alt="profile" />
                         </div>
                     </div>
                     <form className="info" onSubmit={onEditPacient}>

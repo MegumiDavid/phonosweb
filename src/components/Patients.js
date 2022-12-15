@@ -42,7 +42,8 @@ const Patients = () => {
       getPacientes()  
     } else {
       pacientes.forEach(p => {
-        if (p.fname === fnameQuery) {
+        let capilalizedQuery = `${fnameQuery.charAt(0).toUpperCase()}${fnameQuery.slice(1)}` 
+        if (p.fname === capilalizedQuery) {
           allPatients.push(p)
         }
       })
@@ -93,7 +94,7 @@ const Patients = () => {
                       lname={p.lname}
                       token={p.token}
                       bday={p.bday}
-                      img={p.img === 'assets/avatar_morcego.png'? require(`../images/${p.img}`) : p.img}
+                      img={require(`../images/${p.img}`)}
                       condition={p.condicao}                    
                     />
                 ))}
