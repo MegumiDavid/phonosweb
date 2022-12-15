@@ -208,7 +208,7 @@ const Consultas1 = () => {
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="hora">Hora</label>
-                            <input type="text" required id='hora' onChange={(e) => setHora(e.target.value)}/>
+                            <input type="time" required id='hora' onChange={(e) => setHora(e.target.value)}/>
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="paciente">Paciente</label>
@@ -216,7 +216,7 @@ const Consultas1 = () => {
                           </div>
                           <div className="inputwrap">
                             <label htmlFor="tipo">Tipo (presencial / online)</label>
-                            <input type="text" required id='tipo' onChange={(e) => setTipo(e.target.value)}/>
+                            <input type="text" required id='tipo' onChange={(e) => setTipo(e.target.value.toLowerCase())}/>
                           </div>
                           {tipo === 'presencial' &&
                             (
